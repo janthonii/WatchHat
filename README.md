@@ -26,7 +26,7 @@ A web application that provides personalized movie and TV show recommendations b
 - **Add friends**  
 - **Group Watchlists** – Collaborate on what to watch next  
 
-✅ **APIs Used**  
+✅ **API Used**  
 [TMDb API]: (https://developer.themoviedb.org/reference/discover-movie) 
 
 ✅ **Search System** – Find movies, shows, and friends  
