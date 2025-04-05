@@ -17,8 +17,9 @@ A web application that provides personalized movie and TV show recommendations b
 - Ratings from the user’s **"Watched" list**  
 
 ✅ **Lists Management**  
-- **Watched List** – Tracks rated movies/shows (editable rankings)  
-- **Watchlist** – Plan-to-watch items (individual & group)  
+- **Watched List** – Tracks rated movies/shows (editable rankings)
+- **Watchlist** – Plan-to-watch items (individual & group)
+- **Personal Watchlist**  
 - **Recommendation List** – Auto-generated (non-editable)  
 
 ✅ **Social Features**  
@@ -26,7 +27,7 @@ A web application that provides personalized movie and TV show recommendations b
 - **Group Watchlists** – Collaborate on what to watch next  
 
 ✅ **APIs Used**  
-- **IMDbOT** – Movie/TV show data  
+[TMDb API]: (https://developer.themoviedb.org/reference/discover-movie) 
 
 ✅ **Search System** – Find movies, shows, and friends  
 
