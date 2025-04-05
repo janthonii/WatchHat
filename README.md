@@ -27,7 +27,6 @@ A web application that provides personalized movie and TV show recommendations b
 
 ✅ **APIs Used**  
 - **IMDbOT** – Movie/TV show data  
-- **Jikan** – Anime data (MyAnimeList integration)  
 
 ✅ **Search System** – Find movies, shows, and friends  
 
