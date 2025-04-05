@@ -19,7 +19,7 @@ A web application that provides personalized movie and TV show recommendations b
 ✅ **Lists Management**  
 - **Watched List** – Tracks rated movies/shows (editable rankings)
 - **Watchlist** – Plan-to-watch items (individual & group)
-- **Personal Watchlist**  
+- **Personal Watchlist** - (editable)
 - **Recommendation List** – Auto-generated (non-editable)  
 
 ✅ **Social Features**  
