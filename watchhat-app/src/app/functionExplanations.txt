@@ -1,0 +1,232 @@
+ 
+/////////////////Movie//////////////////////////////////////////////////////////
+
+/*
+  This must be imported to use FindMovie(id):
+  import FindMovie from "@/components/mongoApiFunc/movie/FindMovie";
+
+
+  This is an example of how you might use FindMovie. It takes an integer input
+  to look through mongodb and returns a boolean based on if it finds it.
+
+
+  const test = async () => {
+    const bool = await FindMovie(1197306);
+    console.log(bool);
+  }
+
+  */
+
+  /*
+  This must be imported to use AddMovie(movie):
+  import AddMovie from "@/components/mongoApiFunc/movie/AddMovie";
+
+
+  This is an example of how you might use AddMovie. It takes a movie object:
+  {MovieSchema}, and adds it to the mongodb. Throws error on invalid
+  object input.
+
+
+  const test = async () => {
+    await AddMovie(movieData);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use GetMovieData():
+  import GetMovieData from "@/components/movieApiFunc/movie/GetMovieData";
+
+
+  This is an example of how you might use GetMovieData. It makes a call to the TMDB
+  to gather all data about movies on the site. The data added to the database
+  depend on page number and the url to be used. Manually change it. Then all returned 
+  movie data is added to the mongodb. The function makes sure no duplicates 
+  are added to the database. Throws errors if network had issues. 
+
+
+  const test = async () => {
+    await GetMovieData();
+  }
+
+  */
+
+
+ /*
+  This must be imported to use UpdateMovie(movieId, actorId):
+  import UpdateMovie from "@/components/mongoApiFunc/movie/UpdateMovie";
+
+
+  This is an example of how you might use UpdateMovie. It takes a movidId (string) and
+  actorId (number) to then update the corresponding movie in the mongodb. Throws 
+  error on invalid id input.
+
+
+  const test = async () => {
+    await UpdateMovie(id, actorData[i].id);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use UpdateCast():
+  import UpdateCast from "@/components/mongoApiFunc/movie/UpdateCast";
+
+
+  This is an example of how you might use UpdateCast. It makes a call to mongo. 
+  It makes sure every movie in the database has the top 5 most popular actors
+  in the cast array. It will also ensure the actors object are added to the database.
+  May take a while to run. 
+
+
+  const test = async () => {
+    await UpdateCast();
+  }
+
+  */
+
+/////////////////ACTOR//////////////////////////////////////////////////////////
+
+ /*
+  This must be imported to use FindActor(id):
+  import FindActor from "@/components/mongoApiFunc/actor/FindActor";
+
+
+  This is an example of how you might use FindActor. It takes an integer input
+  to look through mongodb and returns a boolean based on if it finds it.
+
+
+  const test = async () => {
+    const bool = await FindActor(117642);
+    console.log(bool);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use AddActor(actor):
+  import AddActor from "@/components/mongoApiFunc/actor/AddActor";
+
+
+  This is an example of how you might use AddActor. It takes an actor object:
+  {ActorSchema}, and adds it to the mongodb. Throws error on invalid
+  object input.
+
+
+  const test = async () => {
+    await AddActor(actorData);
+  }
+
+  */
+ 
+/*
+  This must be imported to use GetActorData('id'):
+  import GetActorData from "@/components/movieApiFunc/actor/GetActorData";
+
+
+  This is an example of how you might use GetActorData. It makes a call to the TMDB
+  to gather all data about actors based on a movidId. Then all returned actor data is 
+  added to the mongodb. The function makes sure no duplicates are added to the 
+  database. Throws errors if network had issues. 
+
+
+  const test = async () => {
+    await GetActorData('950387');
+  }
+
+  */
+ 
+ 
+ 
+ /////////////////GENRE//////////////////////////////////////////////////////////
+ 
+ /*
+  This must be imported to use FindGenre(id):
+  import FindGenre from "@/components/mongoApiFunc/genre/FindGenre";
+
+
+  This is an example of how you might use FindGenre. It takes an integer input
+  to look through mongodb and returns a boolean based on if it finds it.
+
+
+  const test = async () => {
+    const bool = await FindGenre(18);
+    console.log(bool);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use AddGenre(genre):
+  import AddGenre from "@/components/mongoApiFunc/genre/AddGenre";
+
+
+  This is an example of how you might use AddGenre. It takes a genre object:
+  {id: number, name: string}, and adds it to the mongodb. Throws error on invalid
+  object input.
+
+
+  const test = async () => {
+    await AddGenre(genreData);
+  }
+
+  */
+
+
+/*
+  This must be imported to use GetGenreData():
+  import GetGenreData from "@/components/movieApiFunc/genre/GetGenreData";
+
+
+  This is an example of how you might use GetGenreData. It makes a call to the TMDB
+  to gather all data abut genre on the site. Then all returned genre data is added
+  to the mongodb. The function makes sure no duplicates are added to the database. 
+  Throws errors if network had issues. 
+
+
+  const test = async () => {
+    await GetGenreData();
+  }
+
+  */
+
+ 
+ /*
+  This must be imported to use GetGenreNameMovie:
+  import GetGenreNameMovie from "@/components/mongoApiFunc/genre/GetGenreNameMovie";
+
+
+  This is an example of how you might use GetGenreNameMovie. It adds the names
+  to a previously assigned array and pushes the names to that array. The id should 
+  be a valid movie id from the mongo database. If it is not valid, no data is pushed. 
+
+
+  const printGenreNames = async (id: number) => {
+    const  genreNames = [];
+    await GetGenreNameMovie(`${id}`, genreNames);
+    console.log(genreNames);
+  }
+
+  printGenreNames(1195430);
+  */
+
+
+
+
+
+/////////UPLOAD///////////////////////////////////////////////////////////////
+/*
+  These are the steps to upload data.
+  First upload all movies you want. : GetMovieData();
+    change the url and loop number to get different results.
+
+
+  Then Update the cast of all movies in database: UpdateCast();
+
+  Then upload all the genre: GetGenreData();
+
+  */
