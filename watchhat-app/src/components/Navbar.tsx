@@ -1,11 +1,11 @@
 // This is from my Nextjs resources, Navbar_basic
 import Image from 'next/image';
-import logo from '@/assets/UGAlogo_Arch_1in.png';
+import logo from '@/assets/A-HAT_Logo.svg';
 // import profileDefault from '@/assets/images/profile.png';
 
 const Navbar = () => {
   return (
-    <nav className='bg-red-700 border-b-1 border-white'>
+    <nav className=''>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
         <div className='relative flex h-20 items-center justify-between'>
           <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
@@ -39,43 +39,31 @@ const Navbar = () => {
           <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
             {/* <!-- Logo --> */}
             <a className='flex flex-shrink-0 items-center' href='#'>
-              <Image className='h-10 w-auto' src={logo} alt='UGA arch logo' />
+              <Image className='h-10 w-auto' src={logo} alt='WatchHat-logo' />
 
-              <span className='hidden md:block text-white text-2xl font-bold ml-2'>
-                UGA Items
+              <span className='hidden md:block font-(family-name: --Inter) text-2xl font-bold ml-2'>
+                WatchHat
               </span>
             </a>
-            {/* <!-- Desktop Menu Hidden below md screens --> */}
-            <div className='hidden md:ml-6 md:block'>
-              <div className='flex space-x-2'>
-                <a
-                  href='#'
-                  className='text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
-                >
-                  Home
-                </a>
-                <a
-                  href='#'
-                  className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
-                >
-                  About
-                </a>
-                <a
-                  href='#'
-                  className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
-                >
-                  Contact
-                </a>
-              </div>
-            </div>
+            
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
           <div className='hidden md:block md:ml-6'>
             <div className='flex items-center'>
-              <button className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'>
-                <i className='fa-brands fa-google text-white mr-2'></i>
-                <span>Login | Register</span>
+              <div className='hidden md:ml-6 md:block'>
+              <div className='flex space-x-2'>
+                <a
+                  href='#'
+                  className='font-(family-name: --Inter) hover:underline rounded-md px-6 py-2'
+                >
+                  ABOUT US
+                </a>
+              </div>
+            </div>
+              <button className='flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-md px-4 py-2'>
+                <i className='font-(family-name: --Inter)'></i>
+                <span>JOIN NOW</span>
               </button>
             </div>
           </div>
@@ -87,25 +75,13 @@ const Navbar = () => {
         <div className='space-y-1 px-2 pb-3 pt-2'>
           <a
             href='#'
-            className='bg-black text-white block rounded-md px-3 py-2 text-base font-medium'
+            className='block rounded-md px-3 py-2 text-base font-medium'
           >
-            Home
+            ABOUT US
           </a>
-          <a
-            href='#'
-            className='text-white block rounded-md px-3 py-2 text-base font-medium'
-          >
-            About
-          </a>
-          <a
-            href='#'
-            className='text-white block rounded-md px-3 py-2 text-base font-medium'
-          >
-            Contact
-          </a>
-          <button className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4'>
+          <button className='flex items-center \bg-gray-700 bg-custom-orange hover:bg-dark-orange rounded-md px-3 py-2 my-4'>
             <i className='fa-brands fa-google mr-2'></i>
-            <span>Login or Register</span>
+            <span>JOIN NOW</span>
           </button>
         </div>
       </div>
