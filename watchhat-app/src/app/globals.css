@@ -13,6 +13,7 @@
   --font-mono: var(--font-geist-mono);
   --color-custom-orange: #e64833;
   --color-dark-orange: #872a1e;
+  --color-warm-gray: #665C5C;
 }
 
 @media (prefers-color-scheme: dark) {

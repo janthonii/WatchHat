@@ -80,7 +80,7 @@ const Navbar = () => {
             ABOUT US
           </a>
           <button className='flex items-center \bg-gray-700 bg-custom-orange hover:bg-dark-orange rounded-md px-3 py-2 my-4'>
-            <i className='fa-brands fa-google mr-2'></i>
+            <i className='mr-2'></i>
             <span>JOIN NOW</span>
           </button>
         </div>
