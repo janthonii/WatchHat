@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
-    const { ratingId, rating, userId, movieId } = await request.json();
+    const { rating, userId, movieId } = await request.json();
     await connectMongoDB();
-    await Rating.create({ ratingId, rating, userId, movieId });
+    await Rating.create({ rating, userId, movieId });
     return NextResponse.json({ message: "Rating added successfully" }, { status: 201 });
 }
 

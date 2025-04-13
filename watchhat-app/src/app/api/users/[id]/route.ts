@@ -2,16 +2,22 @@ import connectMongoDB from "../../../../../config/mongodb";
 import User from "@/models/usersSchema";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import mongoose from "mongoose";
+import { Types } from "mongoose"; // For ObjectId validation
 
 interface RouteParams {
-    params: { id: number };
+    params: { id: string }; // Now expects MongoDB _id (string/ObjectId)
 }
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
     const { id } = params;
     await connectMongoDB();
-    const user = await User.findOne({ userId: id });
+    
+    // Validate ObjectId format
+    if (!Types.ObjectId.isValid(id)) {
+        return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
+    }
+
+    const user = await User.findById(id); // Use findById instead of findOne
     return NextResponse.json({ user }, { status: 200 });
 }
 
@@ -19,17 +25,27 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const { id } = params;
     const { username, password, friends } = await request.json();
     await connectMongoDB();
-    await User.findOneAndUpdate(
-        { userId: id },
+
+    if (!Types.ObjectId.isValid(id)) {
+        return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        id,
         { username, password, friends },
-        { new: true }
+        { new: true } // Returns the updated document
     );
-    return NextResponse.json({ message: "User updated successfully" }, { status: 200 });
+    return NextResponse.json({ user: updatedUser }, { status: 200 });
 }
 
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
     const { id } = params;
     await connectMongoDB();
-    await User.findOneAndDelete({ userId: id });
-    return NextResponse.json({ message: "User deleted successfully" }, { status: 200 });
+
+    if (!Types.ObjectId.isValid(id)) {
+        return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
+    }
+
+    await User.findByIdAndDelete(id);
+    return NextResponse.json({ message: "User deleted" }, { status: 200 });
 }

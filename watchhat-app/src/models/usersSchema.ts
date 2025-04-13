@@ -3,7 +3,7 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 interface UUser extends Document {
     username: string;
     password: string;
-    friends: String[]; // Reference to other Users - a string array of the friend's usernames
+    friends: String[]; // Reference to other Users - a string array of the friend's ids
 }
 
 const userSchema = new Schema<UUser>({
