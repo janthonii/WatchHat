@@ -87,6 +87,27 @@
 
   */
 
+
+
+ /*
+  This must be imported to use RetrieveMovie:
+  import RetrieveMovie from "@/components/mongoApiFunc/movie/RetrieveMovie";
+
+
+  This is an example of how you might use RetrieveMovie. It adds the movie objects 
+  corresponding to some inputed movie ID and places it inside the inputed array. 
+  The id should be a valid movie id from the mongo database. If it is not valid, 
+  no data is pushed. 
+
+
+  const test = async () => {
+    const movieArray = [];
+    await RetrieveMovie(822119, movieArray);
+    //movieArray[0] = movie object corresponding to movieID 822119
+  }
+
+  */  
+
 /////////////////ACTOR//////////////////////////////////////////////////////////
 
  /*
@@ -139,7 +160,25 @@
 
   */
  
- 
+
+ /*
+  This must be imported to use RetrieveActor:
+  import RetrieveActor from "@/components/mongoApiFunc/actor/RetrieveActor";
+
+
+  This is an example of how you might use RetrieveActor. It adds the actor object 
+  corresponding to some inputed actor ID and places it inside the inputed array. 
+  The id should be a valid actor id from the mongo database. If it is not valid, 
+  no data is pushed. 
+
+
+  const test = async () => {
+    const actorArray = [];
+    await RetrieveActor(1690969, actorArray);
+    //actorArray[0] = actor object corresponding to actorID 1690969
+  }
+
+  */  
  
  /////////////////GENRE//////////////////////////////////////////////////////////
  
