@@ -1,6 +1,7 @@
 // This is from my Nextjs resources, Navbar_basic
 import Image from 'next/image';
 import logo from '@/assets/A-HAT_Logo.svg';
+import Link from 'next/link';
 // import profileDefault from '@/assets/images/profile.png';
 
 const Navbar = () => {
@@ -38,13 +39,13 @@ const Navbar = () => {
 
           <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
             {/* <!-- Logo --> */}
-            <a className='flex flex-shrink-0 items-center' href='#'>
+            <Link className='flex flex-shrink-0 items-center' href='/home'>
               <Image className='h-10 w-auto' src={logo} alt='WatchHat-logo' />
 
               <span className='hidden md:block font-(family-name: --Inter) text-2xl font-bold ml-2'>
                 WatchHat
               </span>
-            </a>
+            </Link>
             
           </div>
 
@@ -53,12 +54,12 @@ const Navbar = () => {
             <div className='flex items-center font-bold'>
               <div className='hidden md:ml-6 md:block'>
               <div className='flex space-x-2'>
-                <a
-                  href='#'
+                <Link
+                  href='/about'
                   className='font-(family-name: --Inter) hover:underline rounded-md px-6 py-2 pr-8'
                 >
                   ABOUT US
-                </a>
+                </Link>
               </div>
             </div>
               <button className='flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2'>
@@ -73,12 +74,12 @@ const Navbar = () => {
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
       <div className='hidden' id='mobile-menu'>
         <div className='space-y-1 px-2 pb-3 pt-2'>
-          <a
-            href='#'
+          <Link
+            href='/about'
             className='block rounded-md px-3 py-2 text-base font-medium'
           >
             ABOUT US
-          </a>
+          </Link>
           <button className='flex items-center \bg-gray-700 bg-custom-orange hover:bg-dark-orange rounded-md px-3 py-2 my-4'>
             <i className='mr-2'></i>
             <span>JOIN NOW</span>
