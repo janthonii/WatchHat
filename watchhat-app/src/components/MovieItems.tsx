@@ -39,7 +39,7 @@ export default function MovieItems() {
                 {
                     movies.length ===0 ? ( <p>No movies listed...</p>) :
                     (<div>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <div className="grid grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] gap-6 justify-center">
                         {movies.map((movie) => (<MovieItem movieitem={movie} key={movie.id} />))}
                         </div>
                     </div>)

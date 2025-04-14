@@ -21,7 +21,7 @@ const MovieItem = ({movieitem}:MovieItemProps) => {
         <div>
             <MovieCard className=" w-full max-w-[300px] flex flex-col items-center min-h-[300px]">
                 <Image src={`${movieitem.poster_path}`} alt={`${movieitem.title} Movie Poster`} height={280} width ={175} className="object-cover rounded-md"></Image>
-                <h1 className="text-center text-[#142024] font-bold text-lg mt-1 break-words">{movieitem.title}</h1>
+                <h1 className="text-center text-[#142024] font-bold text-lg mt-1 tracking-tighter">{movieitem.title}</h1>
             </MovieCard>
         </div>
     )

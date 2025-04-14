@@ -1,10 +1,24 @@
-// This is from my Nextjs resources, Navbar_basic
+'use client';
 import Image from 'next/image';
 import logo from '@/assets/A-HAT_Logo.svg';
+import {useState} from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 // import profileDefault from '@/assets/images/profile.png';
 
 const Navbar = () => {
+
+  const [isLoggedIn,setIsLoggedIn ] = useState(false);
+  const router = useRouter();
+
+  const handleLogin = () => {
+    const newState = !isLoggedIn;
+    setIsLoggedIn(newState);
+      if (!newState) {
+        router.push('/');
+      }
+  };
+
   return (
     <nav className=''>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
@@ -39,7 +53,7 @@ const Navbar = () => {
 
           <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
             {/* <!-- Logo --> */}
-            <Link className='flex flex-shrink-0 items-center' href='/home'>
+            <Link className='flex flex-shrink-0 items-center' href='/'>
               <Image className='h-10 w-auto' src={logo} alt='WatchHat-logo' />
 
               <span className='hidden md:block font-(family-name: --Inter) text-2xl font-bold ml-2'>
@@ -53,19 +67,34 @@ const Navbar = () => {
           <div className='hidden md:block md:ml-6'>
             <div className='flex items-center font-bold'>
               <div className='hidden md:ml-6 md:block'>
-              <div className='flex space-x-2'>
-                <Link
-                  href='/about'
-                  className='font-(family-name: --Inter) hover:underline rounded-md px-6 py-2 pr-8'
-                >
-                  ABOUT US
-                </Link>
-              </div>
+                <div className='flex space-x-2'>
+                  {isLoggedIn && (
+                    <>
+                      <Link href='/home' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>HOME</Link>
+                      <Link href='/home' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>MY LISTS</Link>
+                    </>
+                  )}
+                  <Link href='/about-us' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>ABOUT US</Link>
+                </div>
             </div>
-              <button className='flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2'>
+            {
+            !isLoggedIn && (
+            <div>
+              <button onClick={handleLogin} className='flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2'>
                 <i className='font-(family-name: --Inter)'></i>
                 <span>JOIN NOW</span>
               </button>
+            </div>
+            )}
+            {
+            isLoggedIn && (
+            <div>
+              <button onClick={handleLogin} className='flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2'>
+                <i className='font-(family-name: --Inter)'></i>
+                <span>LOGOUT</span>
+              </button>
+            </div>
+            )}
             </div>
           </div>
         </div>
@@ -80,10 +109,24 @@ const Navbar = () => {
           >
             ABOUT US
           </Link>
-          <button className='flex items-center \bg-gray-700 bg-custom-orange hover:bg-dark-orange rounded-md px-3 py-2 my-4'>
-            <i className='mr-2'></i>
-            <span>JOIN NOW</span>
-          </button>
+          {
+            !isLoggedIn && (
+            <div className="hidden md:block md:ml-6">
+              <button onClick={handleLogin} className='flex items-center \bg-gray-700 bg-custom-orange hover:bg-dark-orange rounded-md px-3 py-2 my-4'>
+                <i className='mr-2'></i>
+                <span>JOIN NOW</span>
+              </button>
+            </div>
+          )}
+          {
+            isLoggedIn && (
+            <div className="hidden md:block md:ml-6">
+              <button onClick={handleLogin} className='flex items-center \bg-gray-700 bg-custom-orange hover:bg-dark-orange rounded-md px-3 py-2 my-4'>
+                <i className='mr-2'></i>
+                <span>LOGOUT</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </nav>
