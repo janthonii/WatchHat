@@ -2,7 +2,7 @@
 /////////////////Movie//////////////////////////////////////////////////////////
 
 /*
-  This must be imported to use FindMovie(id):
+  This must be imported to use FindMovie(id): 
   import FindMovie from "@/components/mongoApiFunc/movie/FindMovie";
 
 
@@ -104,6 +104,30 @@
     const movieArray = [];
     await RetrieveMovie(822119, movieArray);
     //movieArray[0] = movie object corresponding to movieID 822119
+  }
+
+  */  
+
+
+  /*
+  This must be imported to use RetrieveStaff:
+  import RetrieveStaff from "@/components/mongoApiFunc/movie/RetrieveStaff";
+
+
+  This is an example of how you might use RetrieveStaff. It adds the movie objects 
+  corresponding to all staff picks and places it inside the inputed array. 
+  The array should be a generic array or Movie array. 
+
+
+  const test = async() => {
+    const getter = [];
+    await RetrieveStaff(getter);
+    //to access movie object:
+    console.log(getter[0]);
+    //to access title: 
+    console.log(getter[0].title);
+    //to access image: 
+    console.log(getter[0].poster_path);
   }
 
   */  
