@@ -3,14 +3,16 @@ import logo from '@/assets/A-HAT_Logo.svg';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <div className="grid grid-cols-2 justify-center">
-          <Image src={logo} alt="WatchHat logo" />
-        WatchHat
+    <div className="grid grid-rows-[5px_1fr_5px] items-start justify-items-center min-h-screen p-8 pb-20 gap-20 sm:p-10">
+      <main className="flex flex-col gap-[35px] row-start-2 items-center sm:items-start">
+        <div className="grid grid-cols-2 justify-center items-center">
+          <Image src={logo} alt="WatchHat logo" height={170} />
+          <div className="pt-10 wrap-break-word text-[50px] bg-gradient-to-r from-darkdeep-green via-transition-green to-creamy-white text-transparent bg-clip-text font-bold">
+          WatchHat
+          </div>
         </div>
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <ol className="text-center bg-warm-gray">
+          <ol className="text-center text-[20px] outline-3 outline-black bg-warm-gray p-10 rounded-xl font-bold text-base/12">
             <li>Rank your movies!</li>
             <li>Get your best fit movies based on your rankings!</li>
             <li>Have personal lists of movies to watch!</li>
@@ -18,7 +20,7 @@ export default function Home() {
           </ol>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-start">
+      <footer className="row-start-3 flex gap-[24px] flex-wrap items-start font-bold border-t-1 border-white">
         @WatchHat
       </footer>
     </div>

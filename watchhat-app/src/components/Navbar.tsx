@@ -50,12 +50,12 @@ const Navbar = () => {
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
           <div className='hidden md:block md:ml-6'>
-            <div className='flex items-center'>
+            <div className='flex items-center font-bold'>
               <div className='hidden md:ml-6 md:block'>
               <div className='flex space-x-2'>
                 <a
                   href='#'
-                  className='font-(family-name: --Inter) hover:underline rounded-md px-6 py-2'
+                  className='font-(family-name: --Inter) hover:underline rounded-md px-6 py-2 pr-8'
                 >
                   ABOUT US
                 </a>
