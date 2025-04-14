@@ -34,13 +34,13 @@ export default function MovieItems() {
     }, []);
 
     return (
-        <div className="px-4 py-6">
+        <div className="">
             <div className="container-xl m-auto px-4 py-6">
                 {
                     movies.length ===0 ? ( <p>No movies listed...</p>) :
                     (<div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {movies.map((movie, k) => (<MovieItem movieitem={movie} key={movie.id} />))}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        {movies.map((movie) => (<MovieItem movieitem={movie} key={movie.id} />))}
                         </div>
                     </div>)
                 }

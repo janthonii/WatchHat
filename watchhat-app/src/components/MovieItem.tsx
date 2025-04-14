@@ -18,12 +18,12 @@ interface MovieItemProps {
 
 const MovieItem = ({movieitem}:MovieItemProps) => {
     return (
-        <MovieCard>
-            <div className="flex items-center justify-center text-xl font-bold">
-                <Image src={`${movieitem.poster_path}`} alt={`${movieitem.title} Movie Poster`} height={175} width ={60}></Image>
-                <h1 style={{color: "#142024"}}>{movieitem.title}</h1>
-            </div>
-        </MovieCard>
+        <div>
+            <MovieCard className=" w-full max-w-[300px] flex flex-col items-center min-h-[300px]">
+                <Image src={`${movieitem.poster_path}`} alt={`${movieitem.title} Movie Poster`} height={280} width ={175} className="object-cover rounded-md"></Image>
+                <h1 className="text-center text-[#142024] font-bold text-lg mt-1 break-words">{movieitem.title}</h1>
+            </MovieCard>
+        </div>
     )
 }
 

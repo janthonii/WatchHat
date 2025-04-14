@@ -12,25 +12,25 @@ const Home = () => {
     };
 
     return(
-        <div className="w-screen h-screen flex justify-center items-center px-4">
-            <div className="w-full max-w-xl min-w-[200px]">
+        <div className="w-screen min-h-screen px-4">
+        <div className="flex flex-col items-center space-y-4 py-10">
 
-                <div className="grid grid-cols-2 justify-center items-center m-5">
-                    <Image src={logo} alt="WatchHat logo" height={170} />
-                    <div className="pt-10 wrap-break-word text-[50px] bg-gradient-to-r from-darkdeep-green via-transition-green to-creamy-white text-transparent bg-clip-text font-bold">
-                                WatchHat
-                    </div>
+            <div className="flex items-center justify-center gap-x-5">
+                <Image src={logo} alt="WatchHat logo" height={170} />
+                <div className="text-[50px] text-center bg-gradient-to-r from-darkdeep-green via-transition-green to-creamy-white text-transparent bg-clip-text font-bold">
+                    WatchHat
                 </div>
+            </div>
 
-                <div className="relative w-full">
-                    <input className="w-full bg-transparent bg-white text-md text-[#244855] font-bold border rounded-md pl-3 pr-28 py-2 focus:outline-[#E64833] hover:border-slate-300 shadow-sm focus:shadow" placeholder="Search for Titles" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-                    <button className="absolute top-1 right-1 flex items-center rounded bg-[#90AEAD] py-1 px-2.5 border border-transparent text-center text-md font-bold text-[#244855] shadow-sm hover:shadow hover:bg-[90AEAD] active:scale-90" type="button" onClick={handleSearch}>Search</button>
-                </div>
+            <div className="relative w-full max-w-xl min-w-[200px]">
+                <input className="w-full bg-white text-md text-[#244855] font-bold border rounded-md pl-3 pr-28 py-2 focus:outline-[#E64833] hover:border-slate-300 shadow-sm focus:shadow" placeholder="Search for Titles" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+                <button className="absolute top-1 right-1 flex items-center rounded bg-[#90AEAD] py-1 px-2.5 border border-transparent text-center text-md font-bold text-[#244855] shadow-sm hover:shadow hover:bg-[90AEAD] active:scale-90" type="button" onClick={handleSearch}>Search</button>
+            </div>
+        </div>
 
-                <div className="flex mt-10">
-                    <MovieItems></MovieItems>
-                </div>
-
+            <div className="w-full">
+                <h1 className="text-xl">Staff Picks</h1>
+                <MovieItems />
             </div>
         </div>
     );
