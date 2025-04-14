@@ -61,7 +61,7 @@ const Navbar = () => {
                 </a>
               </div>
             </div>
-              <button className='flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-md px-4 py-2'>
+              <button className='flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2'>
                 <i className='font-(family-name: --Inter)'></i>
                 <span>JOIN NOW</span>
               </button>
