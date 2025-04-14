@@ -69,7 +69,7 @@ const MyLists = () => {
                 <div className="p-6 rounded-2xl shadow-md shadow-gray-600 w-full" style={{ backgroundColor: '#665C5C' }}>
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-2xl font-bold">My Lists</h2>
-                        <button onClick={() => handleAddListClick(false, 'left')} className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm">+ Add List</button>
+                        <button onClick={() => handleAddListClick(false, 'left')} className="bg-[#90AEAD] hover:bg-[#738b8a] text-white font-bold py-1 px-3 rounded text-sm">+ Add List</button>
                     </div>
                     {privateLists.map(list => (<ListItem key={list.id} listitem={list} />))}
                 </div>
@@ -77,7 +77,7 @@ const MyLists = () => {
                 <div className="p-6 rounded-2xl shadow-md shadow-gray-600 w-full" style={{ backgroundColor: '#665C5C' }}>
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-2xl font-bold">Shared Lists</h2>
-                        <button onClick={() => handleAddListClick(true, 'right')} className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm">+ Add List</button>
+                        <button onClick={() => handleAddListClick(true, 'right')} className="bg-[#90AEAD] hover:bg-[#738b8a] text-white font-bold py-1 px-3 rounded text-sm">+ Add List</button>
                     </div>
                     {sharedLists.map(list => (<ListItem key={list.id} listitem={list} />))}
                 </div>
@@ -98,7 +98,7 @@ const MyLists = () => {
                     </div>
                     <div className="flex justify-end gap-2">
                         <button type="button" onClick={() => {setIsPopupOpen(false); setNewListTitle('');}} className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancel</button>
-                        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Create List</button>
+                        <button type="submit" className="px-4 py-2 bg-[#90AEAD] text-white rounded hover:bg-[#738b8a]">Create List</button>
                     </div>
                 </form>
             </ListPopup>
