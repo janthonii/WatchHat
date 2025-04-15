@@ -31,6 +31,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Inter", sans-serif;
+  scroll-behavior: smooth
 }
 
 .inter {
@@ -44,12 +45,27 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
-/* Add smooth scrolling */
-.scroll-smooth {
-  scroll-behavior: smooth;
+/* Page vertical scrollbar customization */
+html::-webkit-scrollbar {
+  width: 8px;
 }
+
+html::-webkit-scrollbar-track {
+  background: #142024;  
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #90AEAD;  /* Scrollbar handle color */
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #e64833;  /* Handle color on hover */
+}
+

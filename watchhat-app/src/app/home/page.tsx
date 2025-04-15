@@ -12,7 +12,7 @@ const Home = () => {
     };
 
     return(
-        <div className="w-screen min-h-screen px-4">
+        <div className="min-h-screen px-4 overflow-x-hidden">
         <div className="flex flex-col items-center space-y-4 py-10">
 
             <div className="flex items-center justify-center gap-x-5">

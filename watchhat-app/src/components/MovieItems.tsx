@@ -40,7 +40,6 @@ export default function MovieItems() {
                 {
                     movies.length ===0 ? ( <p>No movies listed...</p>) :
                     (<div>
-                        <div className="grid grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))] gap-6 justify-center">
                         <MoviesHorizontalScroll>
                         {movies.map((movie) => (
                             <div key={movie.id} className="flex-shrink-0 px-2">
@@ -48,7 +47,6 @@ export default function MovieItems() {
                             </div>
                         ))}
                         </MoviesHorizontalScroll>
-                        </div>
                     </div>)
                 }
             </div>
