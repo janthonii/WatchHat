@@ -34,7 +34,7 @@ const MovieItem = ({ movieitem }: MovieItemProps) => {
     return (
         <MovieCard>
             {/* Image (fixed height) */}
-            <div className="relative w-full h-[310px] mb-2 overflow-hidden rounded-md">
+            <div className="relative w-full w-[175px] h-[280px] mb-2 overflow-hidden rounded-md">
                 {movieitem.poster_path && (
                     <Image 
                         src={movieitem.poster_path} 
