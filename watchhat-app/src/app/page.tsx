@@ -1,7 +1,12 @@
 import Image from "next/image";
 import logo from '@/assets/A-HAT_Logo_Big.svg';
+import UpdateSimilarities from "@/components/mongoApiFunc/similarity/UpdateSimilarities";
 
 export default function Home() {
+  const test = async () => {
+    await UpdateSimilarities();
+  }
+  test();
   return (
     <div className="grid grid-rows-[5px_1fr_5px] items-start justify-items-center min-h-screen p-8 pb-20 gap-20 sm:p-10">
       <main className="flex flex-col gap-[35px] row-start-2 items-center sm:items-start">

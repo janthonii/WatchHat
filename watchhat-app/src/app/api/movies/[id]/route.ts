@@ -18,9 +18,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 export async function PUT(request: NextRequest, { params }: RouteParams) {
     let { id } = await params;
     let { actorId } = await request.json();
-    console.log('Inside put');
-    console.log(id);
-    console.log(actorId);
+    //console.log('Inside put');
+    //console.log(id);
+    //console.log(actorId);
     await connectMongoDB();
     const movie = await Movie.findOne({ id: id });
     const objectId = movie?._id;
