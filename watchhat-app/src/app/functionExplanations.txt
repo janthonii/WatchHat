@@ -132,6 +132,30 @@
 
   */  
 
+
+  /*
+  This must be imported to use RetrieveUga:
+  import RetrieveUga from "@/components/mongoApiFunc/movie/RetrieveUga";
+
+
+  This is an example of how you might use RetrieveUga. It adds the movie objects 
+  corresponding to all movies showing at UGA and places it inside the inputed array. 
+  The array should be a generic array or Movie array. 
+
+
+  const test = async() => {
+    const getter = [];
+    await RetrieveUga(getter);
+    //to access movie object:
+    console.log(getter[0]);
+    //to access title: 
+    console.log(getter[0].title);
+    //to access image: 
+    console.log(getter[0].poster_path);
+  }
+
+  */  
+
 /////////////////ACTOR//////////////////////////////////////////////////////////
 
  /*
