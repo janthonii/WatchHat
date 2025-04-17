@@ -16,11 +16,16 @@ interface Movie {
     cast?: number[];
 }
 
-export default function MovieItems() {
-    const[movies, setMovies] = useState<Movie[]>([])
+interface MovieItemsProps {
+    initialMovies?: Movie[];
+}
+
+export default function MovieItems({ initialMovies = [] }: MovieItemsProps) {
+    const [movies, setMovies] = useState<Movie[]>(initialMovies);
 
     useEffect(() => {
-        const fetchMovies = async () => {
+        if (initialMovies.length === 0) {
+            const fetchMovies = async () => {
             try {const response = await fetch('api/movies');
                 if(!response.ok) {
                     throw new Error('Response Not OK');
@@ -32,7 +37,8 @@ export default function MovieItems() {
             }
         };
         fetchMovies();
-    }, []);
+        }
+    }, [initialMovies]);
 
     return (
         <div className="">
