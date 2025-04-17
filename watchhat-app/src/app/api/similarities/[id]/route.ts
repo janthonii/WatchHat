@@ -5,16 +5,14 @@ import { NextRequest } from "next/server";
 import mongoose from "mongoose";
 
 interface RouteParams {
-    params: { idOne: number, idTwo: number};
+    params: { id: number};
 }
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
-    const { idOne, idTwo } = await params;
+    const { id } = await params;
     await connectMongoDB();
-    const possibilityOne = await Similarity.findOne({ movieOne: idOne, movieTwo: idTwo });
-    const possibilityTwo = await Similarity.findOne({ movieOne: idTwo, movieTwo: idOne});
-    let similarity = {};
-    if (possibilityOne) similarity = possibilityOne;
-    if (possibilityTwo) similarity = possibilityTwo;
+    const possibilityOne = await Similarity.find({ movieOne: id });
+    const possibilityTwo = await Similarity.find({ movieTwo: id});
+    const similarity = [...possibilityOne, ...possibilityTwo];
     return NextResponse.json({ similarity }, {status: 200});
 }

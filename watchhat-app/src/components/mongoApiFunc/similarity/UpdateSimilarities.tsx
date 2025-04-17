@@ -1,5 +1,5 @@
 import connectMongoDB from "../../../../config/mongodb";
-import GetActorData from "@/components/movieApiFunc/actor/GetActorData";
+import AddSimilarity from "./AddSimilarity";
 import FindScore from "./FindScore";
 
 
@@ -19,18 +19,17 @@ export default async function UpdateSimilarities () {
       }
       const result = await response.json();
       //console.log(result.movies.length);
-      /*
+      
       for (var i = 0; i < result.movies.length; i++) {
-        //console.log(result.movies[i]);
-        const movieId = result.movies[i].id;
-        await GetActorData(movieId);
+        for (var k = i + 1; k < result.movies.length; k++) {
+            const score = await FindScore(result.movies[i], result.movies[k]);
+            console.log(score);
+            if (score > 0) {
+                AddSimilarity(score, result.movies[i].id, result.movies[k].id);
+            }
+        }
       }
-        */
-       //console.log(result.movies[9]);
-       //console.log(result.movies[13]);
-       const score = await FindScore(result.movies[9], result.movies[13]);
-       console.log(score);
-      console.log('Ending UpdateSimilarities');
+       console.log('Ending UpdateSimilarities');
     } catch (error) {
       console.error('Error in UpdateSimilarities!', error);
     }
