@@ -156,6 +156,28 @@
 
   */  
 
+
+  /*
+  This must be imported to use  GetMovieSearch and MatchSearchResult:
+  import GetMovieSearch from "@/components/movieApiFunc/movie/GetMovieSearch";
+  import MatchSearchResult from "@/components/mongoApiFunc/movie/MatchSearchResult";
+
+
+  This is an example of how you might use both functions for search results. It 
+  adds the movie objects corresponding to all movies in the database that match to
+  a search result. The arrays should be a generic array or Movie array. 
+
+
+  const test = async () => {
+    let arrs = [];
+    await GetMovieSearch(arrs, 'Shrek');
+    let out = [];
+    await MatchSearchResult(arrs, out);
+    console.log(out);
+  }
+
+  */  
+
 /////////////////ACTOR//////////////////////////////////////////////////////////
 
  /*
@@ -315,5 +337,7 @@
   Then Update the cast of all movies in database: UpdateCast();
 
   Then upload all the genre: GetGenreData();
+
+  Then to upload similarity: UpdateSimilarity();
 
   */

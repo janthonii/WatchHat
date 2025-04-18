@@ -19,8 +19,9 @@ export default async function UpdateSimilarities () {
       }
       const result = await response.json();
       //console.log(result.movies.length);
+      // 379
       
-      for (var i = 0; i < result.movies.length; i++) {
+      for (var i = 0; i < 20; i++) {
         for (var k = i + 1; k < result.movies.length; k++) {
             const score = await FindScore(result.movies[i], result.movies[k]);
             console.log(score);
