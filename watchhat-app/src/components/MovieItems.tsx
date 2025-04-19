@@ -2,7 +2,7 @@
 import Link from "next/link";
 import {useState, useEffect} from 'react';
 import MovieItem from "./MovieItem";
-import MoviesHorizontalScroll from "./MoviesHorizontalScroll"; 
+import MoviesHorizontalScroll from "./MoviesHorizontalScroll";
 
 interface Movie {
     id: number;
