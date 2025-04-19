@@ -10,7 +10,7 @@ interface MovieInfoCardsProps {
         poster_path?: string;
     };
     genres: string[];
-    children?: React.ReactNode; // For action buttons
+    children?: React.ReactNode;
     }
 
     export default function MovieInfoCards({ movie, genres, children }: MovieInfoCardsProps) {
@@ -24,6 +24,7 @@ interface MovieInfoCardsProps {
         <div className="min-h-100 p-8">
             <div className="max-w-4xl mx-auto bg-[#665C5C] rounded-lg overflow-hidden shadow-lg">
                 <div className="md:flex">
+
                     {/* Poster Column */}
                     <div className="md:w-1/3 p-4 flex justify-center">
                         <Image src={posterUrl} alt={`${movie.title} Poster`} width={300} height={450} className="object-cover rounded-lg" priority/>

@@ -1,9 +1,8 @@
-// components/movie/MovieActions.tsx
-'use client'; // Needs interactivity
+'use client';
 
 export default function MovieActions({ movieId }: { movieId: number }) {
     const handleAddToList = (listType: string) => {
-        // Implement your list logic here
+        // list stuff here eventuaally
         console.log(`Adding ${movieId} to ${listType} list`);
     };
 

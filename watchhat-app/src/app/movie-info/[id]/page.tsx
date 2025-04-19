@@ -17,14 +17,14 @@ interface MovieDetails {
 }
 
 export default async function MovieInfo({ params }: { params: { id: string } }) {
-    const movieId = params.id;
+    const movieId = parseInt(params.id);
     const movieData: MovieDetails[] = [];
     const genreNames: string[] = [];
 
 
     await RetrieveMovie(Number(movieId), movieData);
     if (movieData[0]?.genre_ids?.length) {
-        await GetGenreNameMovie(movieId, genreNames);
+        await GetGenreNameMovie(movieId.toString(), genreNames);
     }
 
     if (movieData.length === 0 || !movieData[0]) {
@@ -41,7 +41,7 @@ export default async function MovieInfo({ params }: { params: { id: string } }) 
     return (
         <div className="min-h-100 p-8">
             <MovieInfoCards movie={movieData[0]} genres={genreNames}>
-            {/* Client-side actions */}
+
             <MovieActions movieId={Number(movieId)} />
             </MovieInfoCards>
         </div>
