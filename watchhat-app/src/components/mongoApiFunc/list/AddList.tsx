@@ -18,13 +18,13 @@ export default async function AddList (name: string, user: string, shared: boole
       const participants : String[] = [];
       const existing = [];
       await FindListUser(user, existing);
-      for (var i = 0; i < existing.length; i++) {
+      /*for (var i = 0; i < existing.length; i++) {
         if (!existing[i].shared && !shared) {
             if (name === existing[i].name) {
                 throw new Error("Another list has this name already");
             }
         }
-      }
+      }*/
       participants.push(user);  
       const list = { name, participants, shared};
       const response = await fetch(url, { method: 'POST', body: JSON.stringify(list) });

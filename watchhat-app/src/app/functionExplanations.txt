@@ -394,6 +394,23 @@
 
 
   /*
+  This must be imported to use FindNotShared(user : string, updateArray: any[]) :
+  import FindNotShared from "@/components/mongoApiFunc/list/FindNotShared";
+
+
+  This is an example of how you might use FindNotShared. It takes a user name,
+  and an array to push the non-shared list objects into.
+
+  const test = async () => {    
+    const arrs = [];
+    await FindShared('protoUser', arrs);
+    console.log(arrs);
+  }
+
+  */
+
+
+  /*
   This must be imported to use GetList(id : string, updateArray: any[]):
   import GetList from "@/components/mongoApiFunc/list/GetList";
 
@@ -410,6 +427,52 @@
     const idSearch = arrs[0]._id.toString();
     await GetList(idSearch, news);
     console.log(news);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use AddListMovie(id : string, movieId: number):
+  import AddListMovie from "@/components/mongoApiFunc/list/AddListMovie";
+
+
+  This is an example of how you might use AddListMovie. It takes a id,
+  and a movieId number. It adds the movieId inside movies array of the list.
+
+  const test = async () => {    
+    await AddListMovie('6803fb7e165865e367dba525', 1197306);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use UpdateListName(id: string, name: string):
+  import UpdateListName from "@/components/mongoApiFunc/list/UpdateListName";
+
+
+  This is an example of how you might use UpdateListName. It takes a id,
+  and a list name. It changes the list name.
+
+  const test = async () => {    
+    await UpdateListName('6803fb7e165865e367dba525', 'Update List Name v1');
+  }
+
+  */
+
+
+  /*
+  This must be imported to use AddListUser(id : string, movieId: number):
+  import AddListUser from "@/components/mongoApiFunc/list/AddListUser";
+
+
+  This is an example of how you might use AddListUser. It takes a id,
+  and a user name. It adds the user name inside participants array of 
+  the list if its not already there. 
+
+  const test = async () => {    
+    await AddListUser('6803fb7e165865e367dba525', 'Fidel testing');
   }
 
   */

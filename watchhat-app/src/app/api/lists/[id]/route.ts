@@ -24,7 +24,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 }
 
 export async function PUT(request: NextRequest, { params }: RouteParams) {
-  const { id } = params;
+  const { id } = await params;
   const { name, participants, movies } = await request.json();
   await connectMongoDB();
 
@@ -36,7 +36,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     id,
     { name, participants, movies },
     { new: true }
-  ).populate('participants').populate('movies');
+  );
 
   if (!updatedList) {
     return NextResponse.json({ error: "List not found" }, { status: 404 });
