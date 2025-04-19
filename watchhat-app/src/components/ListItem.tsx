@@ -15,8 +15,8 @@ interface ListItemProps {
 const ListItem = ({listitem}:ListItemProps) => {
     return (
         <ListCard>
-            <div className="flex items-center justify-center text-xl font-bold">
-                <h1 style={{color: "#142024"}}>{listitem.title}</h1>
+            <div className="flex items-center justify-center text-xl font-bold text-[#142024]">
+                <Link href={`/my-lists/list/${listitem.id}`}><h1>{listitem.title}</h1></Link>
             </div>
         </ListCard>
     )
