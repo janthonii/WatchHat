@@ -1,5 +1,4 @@
 
-
 const AboutUs = () => {
     return (
         <div className="flex flex-col items-center justify-normal min-h-screen p-4 bg-[#142024] font-bold">
