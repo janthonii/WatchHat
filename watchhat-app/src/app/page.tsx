@@ -3,7 +3,7 @@ import logo from '@/assets/A-HAT_Logo_Big.svg';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[5px_1fr_5px] items-start justify-items-center min-h-screen p-8 pb-20 gap-20 sm:p-10">
+    <div className="grid grid-rows-[5px_1fr_5px] items-start justify-items-center min-h-screen p-8 pb-20 gap-5 sm:p-10">
       <main className="flex flex-col gap-[35px] row-start-2 items-center sm:items-start">
         <div className="grid grid-cols-2 justify-center items-center">
           <Image src={logo} alt="WatchHat logo" height={170} />

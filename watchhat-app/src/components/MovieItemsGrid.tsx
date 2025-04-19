@@ -2,7 +2,6 @@
 import Link from "next/link";
 import {useState, useEffect} from 'react';
 import MovieItem from "./MovieItem";
-import MoviesHorizontalScroll from "./MoviesHorizontalScroll";
 
 interface Movie {
     id: number;
@@ -41,21 +40,16 @@ export default function MovieItems({ initialMovies = [] }: MovieItemsProps) {
     }, [initialMovies]);
 
     return (
-        <div className="">
-            <div className="container-xl m-auto px-4 py-6">
-                {
-                    movies.length ===0 ? ( <p>No movies listed...</p>) :
-                    (<div>
-                        <MoviesHorizontalScroll>
-                        {movies.map((movie) => (
-                            <div key={movie.id} className="flex-shrink-0 px-2">
-                                <MovieItem movieitem={movie} />
-                            </div>
-                        ))}
-                        </MoviesHorizontalScroll>
-                    </div>)
-                }
-            </div>
+        <div className="w-full">
+            {movies.length === 0 ? (
+                <p className="text-centered">No movies listed...</p>
+            ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {movies.map((movie) => (
+                        <MovieItem key={movie.id} movieitem={movie} />
+                    ))}
+                </div>
+            )}
         </div>
-    )
+    );
 }

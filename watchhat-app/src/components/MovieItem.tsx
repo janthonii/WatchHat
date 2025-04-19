@@ -32,33 +32,35 @@ const MovieItem = ({ movieitem }: MovieItemProps) => {
     };
 
     return (
-        <MovieCard>
-            {/* Image (fixed height) */}
-            <div className="relative w-[175px] h-[280px] mb-2 overflow-hidden rounded-md">
-                {movieitem.poster_path && (
-                    <Image 
-                        src={movieitem.poster_path} 
-                        alt={`${movieitem.title} Poster`}
-                        fill
-                        className="object-cover"
-                        sizes="180px"
-                    />
-                )}
-            </div>
+        <Link href={`/movie-info/${movieitem.id}`}>
+            <MovieCard>
+                {/* Image (fixed height) */}
+                <div className="relative w-[175px] h-[280px] mb-2 overflow-hidden rounded-md">
+                    {movieitem.poster_path && (
+                        <Image 
+                            src={movieitem.poster_path} 
+                            alt={`${movieitem.title} Poster`}
+                            fill
+                            className="object-cover"
+                            sizes="180px"
+                        />
+                    )}
+                </div>
 
-            {/* Title (dynamic font sizing) */}
-            <div className="flex-1 flex items-center justify-center px-1">
-                <h1 
-                    className="text-[#FBE9D0] font-bold text-center line-clamp-2 break-words"
-                    style={{
-                        fontSize: getTitleSize(movieitem.title),
-                        lineHeight: '1.2'
-                    }}
-                >
-                    {movieitem.title}
-                </h1>
-            </div>
-        </MovieCard>
+                {/* Title (dynamic font sizing) */}
+                <div className="flex-1 flex items-center justify-center px-1">
+                    <h1 
+                        className="text-[#FBE9D0] font-bold text-center line-clamp-2 break-words"
+                        style={{
+                            fontSize: getTitleSize(movieitem.title),
+                            lineHeight: '1.2'
+                        }}
+                    >
+                        {movieitem.title}
+                    </h1>
+                </div>
+            </MovieCard>
+        </Link>
     );
 };
 
