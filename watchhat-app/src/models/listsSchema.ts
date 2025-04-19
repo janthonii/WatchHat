@@ -2,8 +2,9 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface LList extends Document {
     name: string;
-    participants: String[]; // Reference to Users
-    movies: String[];      // Reference to Movies
+    participants: string[]; // Reference to Users
+    movies?: number[];      // Reference to Movies
+    shared: boolean;
 }
 
 const listSchema = new Schema<LList>({
@@ -12,14 +13,16 @@ const listSchema = new Schema<LList>({
         required: true,
         trim: true
     },
-    participants: [{
+    participants: {
         type: [String],
-        ref: "User"
-    }],
-    movies: [{
-        type: Schema.Types.ObjectId,
-        ref: "Movie"
-    }]
+        required: true
+    },
+    movies: {
+        type: [Number],
+    },
+    shared: {
+        type: Boolean
+    }
 });
 
 const List: Model<LList> = mongoose.models.List || mongoose.model<LList>("List", listSchema);
