@@ -14,12 +14,13 @@
   "description": "",
   "dependencies": {
     "@types/react": "^19.1.0",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^5.1.0",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.2",
-    "next": "^15.2.5"
+    "next": "^15.2.5",
+    "next-auth": "^5.0.0-beta.25"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.3",
