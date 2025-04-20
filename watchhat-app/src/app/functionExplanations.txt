@@ -178,6 +178,26 @@
 
   */  
 
+
+  /*
+  This must be imported to use RetrieveMovieSim:
+  import RetrieveMovieSim from "@/components/mongoApiFunc/movie/RetrieveMovieSim";
+
+
+  This is an example of how you might use RetrieveMovieSim. It adds the all
+  movie objects, just having id, cast, and genre ids. Insert an array where the
+  data should be pushed to. 
+
+
+  const test = async () => {
+    const movieArray = [];
+    await RetrieveMovieSim(movieArray);
+    console.log(movieArray.length);
+  }
+  test();
+
+  */  
+
 /////////////////ACTOR//////////////////////////////////////////////////////////
 
  /*
