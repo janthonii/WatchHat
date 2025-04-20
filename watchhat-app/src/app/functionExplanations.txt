@@ -496,3 +496,18 @@
   }
 
   */
+
+
+  /*
+  This must be imported to use DeleteList (id : string):
+  import GetList from "@/components/mongoApiFunc/list/GetList";
+
+
+  This is an example of how you might use DeleteList. It takes a id
+  then deletes the list from the database.
+
+  const test = async () => {    
+    await DeleteList('6803fb32c27d40bfafc48410');
+  }
+
+  */

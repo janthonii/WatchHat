@@ -18,8 +18,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   if (!list) {
     return NextResponse.json({ error: "List not found" }, { status: 404 });
   }
-
-  //const list = await List.findOne({ _id: id });
   return NextResponse.json({ list }, { status: 200 });
 }
 

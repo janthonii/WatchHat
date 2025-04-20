@@ -1,6 +1,3 @@
-import connectMongoDB from "../../../../config/mongodb";
-import List from "@/models/listsSchema";
-import { ObjectId } from "mongoose";
 
 /**
  * This function will get a specific list. It will then push that list into an array.

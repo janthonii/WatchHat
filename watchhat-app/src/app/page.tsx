@@ -1,7 +1,12 @@
 import Image from "next/image";
 import logo from '@/assets/A-HAT_Logo_Big.svg';
+import DeleteList from "@/components/mongoApiFunc/list/DeleteList";
 
 export default function Home() {
+  const test = async () => {    
+    await DeleteList('6803fb32c27d40bfafc48410');
+  }
+  test();
   return (
     <div className="grid grid-rows-[5px_1fr_5px] items-start justify-items-center min-h-screen p-8 pb-20 gap-5 sm:p-10">
       <main className="flex flex-col gap-[35px] row-start-2 items-center sm:items-start">

@@ -20,7 +20,7 @@
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.2",
     "next": "^15.2.5",
-    "next-auth": "^5.0.0-beta.25"
+    "next-auth": "^5.0.0-beta.26"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.3",
