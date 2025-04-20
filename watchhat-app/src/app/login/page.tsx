@@ -1,4 +1,4 @@
-import LoginForm from '@/components/LoginForm';
+import LoginForm from '@/components/loginForm';
 import Image from 'next/image';
 import logo from '@/assets/A-HAT_Logo.svg';
 import Link from 'next/link';
