@@ -65,13 +65,13 @@ const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => 
             </div>
         {!activeSearch && (
             <>
-                <div className="w-full">
-                    <h2 className="text-xl">Staff Picks</h2>
-                    <MovieItems initialMovies={staffMovies} />
-                </div>
                 <div className="w-full mt-8">
                     <h2 className="text-xl">Showing in April @ UGA</h2>
                     <MovieItems initialMovies={ugaMovies} />
+                </div>
+                <div className="w-full">
+                    <h2 className="text-xl">Staff Picks</h2>
+                    <MovieItems initialMovies={staffMovies} />
                 </div>
             </>
         )}

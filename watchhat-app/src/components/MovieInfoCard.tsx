@@ -10,10 +10,12 @@ interface MovieInfoCardsProps {
         poster_path?: string;
     };
     genres: string[];
+    actors: string[];
+    actorPics?: string[];
     children?: React.ReactNode;
     }
 
-    export default function MovieInfoCards({ movie, genres, children }: MovieInfoCardsProps) {
+    export default function MovieInfoCards({ movie, genres, actors, actorPics, children }: MovieInfoCardsProps) {
     const posterUrl = movie.poster_path
         ? movie.poster_path.startsWith('http')
         ? movie.poster_path
@@ -33,15 +35,24 @@ interface MovieInfoCardsProps {
                     {/* Info Column */}
                     <div className="md:w-2/3 p-6 text-[#FBE9D0]">
                         <h1 className="text-3xl font-bold mb-2">{movie.title}</h1>
-                        {movie.original_title && movie.original_title !== movie.title && (
-                            <p className="italic mb-4">Original Title: {movie.original_title}</p>
-                        )}
 
-                        {children && <div className="mb-4">{children}</div>}
+                        {movie.original_title && movie.original_title !== movie.title && (
+                            <p className="italic mb-2 pl-5">Original Title: {movie.original_title}</p>
+                        )}
 
                         {movie.release_date && (
-                            <p className="mb-4">Release Date: {new Date(movie.release_date).toLocaleDateString()}</p>
+                            <p className="mb-2 pl-5">Release Date: {new Date(movie.release_date).toLocaleDateString()}</p>
                         )}
+
+                        {movie.overview && (
+                            <div className="mb-4">
+                                <h2 className="text-xl font-semibold mb-2">Overview</h2>
+                                <p className="ml-2">{movie.overview}</p>
+                            </div>
+                        )}
+
+                        {/* Display Buttons */}
+                        {children && <div className="mb-4">{children}</div>}
 
                         {/* Display Genres */}
                         {genres.length > 0 && (
@@ -54,11 +65,15 @@ interface MovieInfoCardsProps {
                                 </div>
                             </div>
                         )}
-
-                        {movie.overview && (
+                        {/* Display Actors */}
+                        {actors && actors.length > 0 && (
                             <div className="mb-4">
-                                <h2 className="text-xl font-semibold mb-2">Overview</h2>
-                                <p className="ml-2">{movie.overview}</p>
+                                <h2 className="text-lg font-semibold">Starring</h2>
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {actors.map((actor, index) => (
+                                        <span key={index} className="bg-[#7A6E6E] hover:scale-[1.05] hover:rotate-[-5deg] transition duration-200 px-3 py-1 rounded-full text-sm">{actor}</span>
+                                    ))}
+                                </div>
                             </div>
                         )}
                     </div>

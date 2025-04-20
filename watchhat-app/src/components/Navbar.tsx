@@ -71,7 +71,8 @@ const Navbar = () => {
                   {isLoggedIn && (
                     <>
                       <Link href='/home' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>HOME</Link>
-                      <Link href='/my-lists' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>MY LISTS</Link>
+                      <Link href='/my-lists/recommended-list/0' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>RECOMMENDED LIST</Link>
+                      <Link href='/my-lists/' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>MY LISTS</Link>
                     </>
                   )}
                   <Link href='/about-us' className='font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6'>ABOUT US</Link>

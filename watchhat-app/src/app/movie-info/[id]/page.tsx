@@ -3,6 +3,9 @@ import GetGenreNameMovie from "@/components/mongoApiFunc/genre/GetGenreNameMovie
 import Image from "next/image";
 import MovieInfoCards from "@/components/MovieInfoCard";
 import MovieActions from "@/components/MovieActions";
+import GetActorData from "@/components/movieApiFunc/actor/GetActorData";
+import RetrieveActor from "@/components/mongoApiFunc/actor/RetrieveActor";
+
 
 interface MovieDetails {
     id: number;
@@ -16,11 +19,19 @@ interface MovieDetails {
     cast?: number[];
 }
 
+interface ActorDetails {
+    name: string;
+    original_name: string;
+    profile_path?: string;
+    id: number;
+    popularity: number;
+}
+
 export default async function MovieInfo({ params }: { params: { id: string } }) {
     const movieId = parseInt(params.id);
     const movieData: MovieDetails[] = [];
     const genreNames: string[] = [];
-
+    const actorData: ActorDetails[] = [];
 
     await RetrieveMovie(Number(movieId), movieData);
     if (movieData[0]?.genre_ids?.length) {
@@ -38,9 +49,19 @@ export default async function MovieInfo({ params }: { params: { id: string } }) 
         );
     }
 
+    await GetActorData(movieId.toString());
+    if (movieData[0]?.cast?.length) {
+        const actorIds = movieData[0].cast.slice(0, 5);
+        for (const actorId of actorIds) {
+            await RetrieveActor(actorId, actorData);
+        }
+    }
+
+    const actorNames = actorData.map(actor => actor.name).filter(name => name);
+
     return (
         <div className="min-h-100 p-8">
-            <MovieInfoCards movie={movieData[0]} genres={genreNames}>
+            <MovieInfoCards movie={movieData[0]} genres={genreNames} actors={actorNames}>
 
             <MovieActions movieId={Number(movieId)} />
             </MovieInfoCards>
