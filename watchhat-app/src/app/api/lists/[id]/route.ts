@@ -44,7 +44,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
-  const { id } = params;
+  const { id } = await params;
   await connectMongoDB();
 
   if (!Types.ObjectId.isValid(id)) {

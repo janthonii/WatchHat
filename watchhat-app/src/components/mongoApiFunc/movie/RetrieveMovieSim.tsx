@@ -21,14 +21,6 @@ export default async function RetrieveMovieSim (updateArray: any[]) {
         return { id, genre_ids, cast };
       });
       updateArray.push(...temp);
-      //console.log(result.movies.length);
-      /*for (var i = 0; i < result.movies.length; i++) {
-        //console.log(result.movies[i]);
-        const movieId = result.movies[i].id;
-
-        await GetActorData(movieId);
-      }*/
-
       console.log('Ending RetrieveMovieSim');
     } catch (error) {
       console.error('Error in RetrieveMovieSim!', error);
