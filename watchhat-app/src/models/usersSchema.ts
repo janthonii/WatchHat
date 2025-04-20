@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface UUser extends Document {
+    _id: mongoose.Types.ObjectId;
     username: string;
     password: string;
     friends: mongoose.Types.ObjectId[]; // Reference to other Users - a string array of the friend's ids
