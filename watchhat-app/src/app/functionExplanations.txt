@@ -452,6 +452,27 @@
   */
 
 
+/*
+  This must be imported to use RetrieveListId(list : any, updateArray: any[]):
+  import GetList from "@/components/mongoApiFunc/list/RetrieveListId";
+
+
+  This is an example of how you might use RetrieveListId. It takes
+  a list object and an array to push the list id (string version) into.
+
+  const test = async () => {    
+    const arrs = [];
+    //gets all shared list
+    await FindNotShared('protoUser', arrs);
+    const news = [];
+    //needed to convert _id to string
+    await RetrieveListId(arrs[0], news);
+    console.log(news);
+  }
+
+  */
+
+
   /*
   This must be imported to use AddListMovie(id : string, movieId: number):
   import AddListMovie from "@/components/mongoApiFunc/list/AddListMovie";
@@ -487,7 +508,7 @@
   import AddListUser from "@/components/mongoApiFunc/list/AddListUser";
 
 
-  This is an example of how you might use AddListUser. It takes a id,
+  This is an example of how you might use AddListUser. It takes a list object
   and a user name. It adds the user name inside participants array of 
   the list if its not already there. 
 
