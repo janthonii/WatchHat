@@ -15,20 +15,12 @@ export default async function RetrieveMovieSim (updateArray: any[]) {
         throw new Error('Network response for update cast was not ok');
       }
       const result = await response.json();
-      let {id, genre_ids, cast}= result.movies[0];
+      let {id, original_language, genre_ids, cast}= result.movies[0];
       const temp = result.movies.map((movie: any) => {
-        const { id, genre_ids, cast } = movie;
-        return { id, genre_ids, cast };
+        const { id,original_language, genre_ids, cast } = movie;
+        return { id,original_language, genre_ids, cast };
       });
       updateArray.push(...temp);
-      //console.log(result.movies.length);
-      /*for (var i = 0; i < result.movies.length; i++) {
-        //console.log(result.movies[i]);
-        const movieId = result.movies[i].id;
-
-        await GetActorData(movieId);
-      }*/
-
       console.log('Ending RetrieveMovieSim');
     } catch (error) {
       console.error('Error in RetrieveMovieSim!', error);

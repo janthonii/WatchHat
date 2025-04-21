@@ -18,8 +18,6 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   if (!list) {
     return NextResponse.json({ error: "List not found" }, { status: 404 });
   }
-
-  //const list = await List.findOne({ _id: id });
   return NextResponse.json({ list }, { status: 200 });
 }
 
@@ -46,7 +44,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
-  const { id } = params;
+  const { id } = await params;
   await connectMongoDB();
 
   if (!Types.ObjectId.isValid(id)) {

@@ -496,3 +496,35 @@
   }
 
   */
+
+
+  /*
+  This must be imported to use DeleteList (id : string):
+  import DeleteList from "@/components/mongoApiFunc/list/DeleteList";
+
+
+  This is an example of how you might use DeleteList. It takes a id
+  then deletes the list from the database.
+
+  const test = async () => {    
+    await DeleteList('6803fb32c27d40bfafc48410');
+  }
+
+  */
+
+
+  /*
+  This must be imported to use RemoveListUser (id: string, user: string):
+  import DeleteList from "@/components/mongoApiFunc/list/RemoveListUser";
+
+
+  This is an example of how you might use RemoveListUser. It takes a id and
+  username. Then it deletes the username from particpants inside list. If
+  resulting change leads to an empty participants array, it calls for deletion
+  of the list.
+
+  const test = async () => {    
+    await RemoveListUser('6803fb32c27d40bfafc48410', 'newUser');
+  }
+
+  */
