@@ -528,3 +528,20 @@
   }
 
   */
+
+
+  /*
+  This must be imported to use RefetchList(updateArray: any[]):
+  import RefetchList from "@/components/mongoApiFunc/list/RefetchList";
+
+
+  This is an example of how you might use RefetchList. It takes an array to push 
+  all list objects into. The main purpose is to 'refresh' the data after a new list
+  is made or list object is updated or list object is deleted.
+
+  const test = async () => {    
+     let temp = [];
+      await RefetchList(temp);
+  }
+
+  */
