@@ -51,9 +51,9 @@ const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => 
     return(
         <div className="min-h-screen px-4 overflow-x-hidden">
             <div className="flex flex-col items-center space-y-4 py-10">
-                <div className="flex items-center justify-center gap-x-5">
+                <div className="flex flex-row mr-10 items-center justify-evenly gap-x-6">
                     <Image src={logo} alt="WatchHat logo" height={170} />
-                    <div className="text-[50px] text-center bg-gradient-to-r from-darkdeep-green via-transition-green to-creamy-white text-transparent bg-clip-text font-bold">
+                    <div className="text-[50px] pt-8 text-center bg-gradient-to-r from-darkdeep-green via-transition-green to-creamy-white text-transparent bg-clip-text font-bold">
                         WatchHat
                     </div>
                 </div>
