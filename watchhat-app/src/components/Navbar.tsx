@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import logo from '@/assets/A-HAT_Logo.svg';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
@@ -10,10 +10,26 @@ const Navbar = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleLogout = async () => {
     await signOut({ callbackUrl: '/' });
   };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="">
@@ -60,18 +76,6 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block md:ml-6">
             <div className="flex items-center font-bold">
-              <div className="hidden md:ml-6 md:block">
-                <div className="flex space-x-2">
-                  {session?.user && (
-                    <>
-                      <Link href="/home" className="font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6">HOME</Link>
-                      <Link href="/my-lists" className="font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6">MY LISTS</Link>
-                    </>
-                  )}
-                  <Link href="/about-us" className="font-(family-name: --Inter) hover:underline rounded-md py-2 pr-6">ABOUT US</Link>
-                </div>
-              </div>
-              
               {!session?.user ? (
                 <div>
                   <button 
@@ -82,13 +86,78 @@ const Navbar = () => {
                   </button>
                 </div>
               ) : (
-                <div>
+                <div className="relative ml-4" ref={dropdownRef}>
                   <button 
-                    onClick={handleLogout}
-                    className="flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2 ml-4"
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="flex items-center bg-[#E64833] hover:bg-dark-orange text-[#FBE9D0] rounded-sm px-4 py-2 uppercase"
                   >
-                    <span>LOGOUT</span>
+                    <span>WELCOME, {session.user.name?.toUpperCase() || session.user.email?.split('@')[0].toUpperCase()}</span>
+                    <svg
+                      className={`ml-2 h-4 w-4 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </button>
+                  
+                  {dropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#E64833] ring-1 ring-black ring-opacity-5">
+                      <div className="py-1">
+                        <Link
+                          href="/profile"
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
+                        >
+                          Profile
+                        </Link>
+                        <Link
+                          href="/recommended"
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
+                        >
+                          Recommended
+                        </Link>
+                        <Link
+                          href="/my-lists"
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
+                        >
+                          My Lists
+                        </Link>
+                        <Link
+                          href="/home"
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
+                        >
+                          Search
+                        </Link>
+                        <Link
+                          href="/about-us"
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
+                        >
+                          About Us
+                        </Link>
+                        <hr className="border-[#FBE9D0]" />
+                        <button
+                          onClick={() => {
+                            handleLogout();
+                            setDropdownOpen(false);
+                          }}
+                          className="block w-full text-left px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
+                        >
+                          Log Out
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -107,7 +176,14 @@ const Navbar = () => {
                   className="block rounded-md px-3 py-2 text-base font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  HOME
+                  SEARCH
+                </Link>
+                <Link
+                  href="/recommended"
+                  className="block rounded-md px-3 py-2 text-base font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  RECOMMENDED
                 </Link>
                 <Link
                   href="/my-lists"
@@ -115,6 +191,13 @@ const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   MY LISTS
+                </Link>
+                <Link
+                  href="/profile"
+                  className="block rounded-md px-3 py-2 text-base font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  PROFILE
                 </Link>
               </>
             )}
@@ -143,7 +226,7 @@ const Navbar = () => {
                 }}
                 className="flex items-center bg-gray-700 bg-custom-orange hover:bg-dark-orange rounded-md px-3 py-2 my-4 w-full"
               >
-                <span>LOGOUT</span>
+                <span>LOG OUT</span>
               </button>
             )}
           </div>
