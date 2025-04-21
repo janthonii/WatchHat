@@ -132,6 +132,72 @@
 
   */  
 
+
+  /*
+  This must be imported to use RetrieveUga:
+  import RetrieveUga from "@/components/mongoApiFunc/movie/RetrieveUga";
+
+
+  This is an example of how you might use RetrieveUga. It adds the movie objects 
+  corresponding to all movies showing at UGA and places it inside the inputed array. 
+  The array should be a generic array or Movie array. 
+
+
+  const test = async() => {
+    const getter = [];
+    await RetrieveUga(getter);
+    //to access movie object:
+    console.log(getter[0]);
+    //to access title: 
+    console.log(getter[0].title);
+    //to access image: 
+    console.log(getter[0].poster_path);
+  }
+
+  */  
+
+
+  /*
+  This must be imported to use  GetMovieSearch and MatchSearchResult:
+  import GetMovieSearch from "@/components/movieApiFunc/movie/GetMovieSearch";
+  import MatchSearchResult from "@/components/mongoApiFunc/movie/MatchSearchResult";
+
+
+  This is an example of how you might use both functions for search results. It 
+  adds the movie objects corresponding to all movies in the database that match to
+  a search result. The arrays should be a generic array or Movie array. 
+
+
+  const test = async () => {
+    let arrs = [];
+    await GetMovieSearch(arrs, 'Shrek');
+    let out = [];
+    await MatchSearchResult(arrs, out);
+    console.log(out);
+  }
+
+  */  
+
+
+  /*
+  This must be imported to use RetrieveMovieSim:
+  import RetrieveMovieSim from "@/components/mongoApiFunc/movie/RetrieveMovieSim";
+
+
+  This is an example of how you might use RetrieveMovieSim. It adds the all
+  movie objects, just having id, cast, and genre ids. Insert an array where the
+  data should be pushed to. 
+
+
+  const test = async () => {
+    const movieArray = [];
+    await RetrieveMovieSim(movieArray);
+    console.log(movieArray.length);
+  }
+  test();
+
+  */  
+
 /////////////////ACTOR//////////////////////////////////////////////////////////
 
  /*
@@ -291,5 +357,174 @@
   Then Update the cast of all movies in database: UpdateCast();
 
   Then upload all the genre: GetGenreData();
+
+  Then to upload similarity: UpdateSimilarity();
+
+  */
+
+
+   /////////////////LIST//////////////////////////////////////////////////////////
+
+   /*
+  This must be imported to use AddList(name: string, user: string, shared: boolean):
+  import AddMovie from "@/components/mongoApiFunc/movie/AddMovie";
+
+
+  This is an example of how you might use AddList. It takes a list name, a user name,
+  and a shared boolean as parameters.
+
+  //non-shared
+  const test = async () => {
+    await AddList('Non Shared List Test', 'protoUser', false)
+  }
+
+  */
+
+  /*
+  This must be imported to use FindListUser(user : string, updateArray: any[]):
+  import FindListUser from "@/components/mongoApiFunc/list/FindListUser";
+
+
+  This is an example of how you might use FindListUser. It takes a user name,
+  and an array to push the list objects into.
+
+  const test = async () => {
+    const arrs = [];
+    await FindListUser('protoUser', arrs);
+    console.log(arrs);
+  }
+
+  */
+
+  /*
+  This must be imported to use FindShared(user : string, updateArray: any[]) :
+  import FindShared from "@/components/mongoApiFunc/list/FindShared";
+
+
+  This is an example of how you might use FindShared. It takes a user name,
+  and an array to push the shared list objects into.
+
+  const test = async () => {    
+    const arrs = [];
+    await FindShared('protoUser', arrs);
+    console.log(arrs);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use FindNotShared(user : string, updateArray: any[]) :
+  import FindNotShared from "@/components/mongoApiFunc/list/FindNotShared";
+
+
+  This is an example of how you might use FindNotShared. It takes a user name,
+  and an array to push the non-shared list objects into.
+
+  const test = async () => {    
+    const arrs = [];
+    await FindShared('protoUser', arrs);
+    console.log(arrs);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use GetList(id : string, updateArray: any[]):
+  import GetList from "@/components/mongoApiFunc/list/GetList";
+
+
+  This is an example of how you might use GetList. It takes a id,
+  and an array to push the list objects into.
+
+  const test = async () => {    
+    const arrs = [];
+    //gets all shared list
+    await FindShared('protoUser', arrs);
+    const news = [];
+    //needed to convert _id to string
+    const idSearch = arrs[0]._id.toString();
+    await GetList(idSearch, news);
+    console.log(news);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use AddListMovie(id : string, movieId: number):
+  import AddListMovie from "@/components/mongoApiFunc/list/AddListMovie";
+
+
+  This is an example of how you might use AddListMovie. It takes a id,
+  and a movieId number. It adds the movieId inside movies array of the list.
+
+  const test = async () => {    
+    await AddListMovie('6803fb7e165865e367dba525', 1197306);
+  }
+
+  */
+
+
+  /*
+  This must be imported to use UpdateListName(id: string, name: string):
+  import UpdateListName from "@/components/mongoApiFunc/list/UpdateListName";
+
+
+  This is an example of how you might use UpdateListName. It takes a id,
+  and a list name. It changes the list name.
+
+  const test = async () => {    
+    await UpdateListName('6803fb7e165865e367dba525', 'Update List Name v1');
+  }
+
+  */
+
+
+  /*
+  This must be imported to use AddListUser(id : string, movieId: number):
+  import AddListUser from "@/components/mongoApiFunc/list/AddListUser";
+
+
+  This is an example of how you might use AddListUser. It takes a id,
+  and a user name. It adds the user name inside participants array of 
+  the list if its not already there. 
+
+  const test = async () => {    
+    await AddListUser('6803fb7e165865e367dba525', 'Fidel testing');
+  }
+
+  */
+
+
+  /*
+  This must be imported to use DeleteList (id : string):
+  import DeleteList from "@/components/mongoApiFunc/list/DeleteList";
+
+
+  This is an example of how you might use DeleteList. It takes a id
+  then deletes the list from the database.
+
+  const test = async () => {    
+    await DeleteList('6803fb32c27d40bfafc48410');
+  }
+
+  */
+
+
+  /*
+  This must be imported to use RemoveListUser (id: string, user: string):
+  import DeleteList from "@/components/mongoApiFunc/list/RemoveListUser";
+
+
+  This is an example of how you might use RemoveListUser. It takes a id and
+  username. Then it deletes the username from particpants inside list. If
+  resulting change leads to an empty participants array, it calls for deletion
+  of the list.
+
+  const test = async () => {    
+    await RemoveListUser('6803fb32c27d40bfafc48410', 'newUser');
+  }
 
   */

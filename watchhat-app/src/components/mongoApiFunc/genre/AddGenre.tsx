@@ -15,7 +15,7 @@ export default async function AddGenre (genre) {
       if (!response.ok) {
         throw new Error('Network response for add genre was not ok');
       }
-      const result = await response.json();
+      //const result = await response.json();
       //console.log(result);
       console.log('Ending addGenre');
     } catch (error) {

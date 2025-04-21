@@ -7,7 +7,6 @@ import RetrieveMovie from "@/components/mongoApiFunc/movie/RetrieveMovie";
  */
 export default async function RetrieveStaff (updateArray: any[]) {
     console.log("running RetrieveStaff");
-    const getUrl = `http://localhost:3000/api/movies`;
     try {
       //get response to api url
       //let sResults = [];
