@@ -1,5 +1,6 @@
 import CheckParticipants from "./CheckParticipants";
 import GetList from "./GetList";
+import RefetchList from "./RefetchList";
 
 /**
  * This function will add a user name to the participants inside a list object. 
@@ -12,7 +13,7 @@ export default async function AddListUser (id: string, user: string) {
     const url = `http://localhost:3000/api/lists/${id}`
     try {
       //get response to api url
-      const temp = [];
+      let temp = [];
       await GetList(id, temp);
       if (temp.length > 0) {
         let movies = temp[0].movies;
@@ -27,6 +28,8 @@ export default async function AddListUser (id: string, user: string) {
             throw new Error('Network response was not ok');
           }
       }
+      temp = [];
+      await RefetchList(temp);
       console.log('Ending UpdateListMovie');
     } catch (error) {
       console.error('Error in UpdateListMovie!', error);
