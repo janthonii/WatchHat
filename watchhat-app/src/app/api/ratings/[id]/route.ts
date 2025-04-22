@@ -8,14 +8,14 @@ interface RouteParams {
 }
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
-  const { id } = params;
+  const { id } = await params;
   await connectMongoDB();
 
   if (!Types.ObjectId.isValid(id)) {
     return NextResponse.json({ error: "Invalid rating ID" }, { status: 400 });
   }
 
-  const rating = await Rating.findById(id).populate('user').populate('movie');
+  const rating = await Rating.findById(id);
   if (!rating) {
     return NextResponse.json({ error: "Rating not found" }, { status: 404 });
   }
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 }
 
 export async function PUT(request: NextRequest, { params }: RouteParams) {
-  const { id } = params;
+  const { id } = await params;
   const { rating, userId, movieId } = await request.json();
   await connectMongoDB();
 
@@ -36,7 +36,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     id,
     { rating, user: userId, movie: movieId },
     { new: true }
-  ).populate('user').populate('movie');
+  );
 
   if (!updatedRating) {
     return NextResponse.json({ error: "Rating not found" }, { status: 404 });
@@ -46,7 +46,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
-  const { id } = params;
+  const { id } = await params;
   await connectMongoDB();
 
   if (!Types.ObjectId.isValid(id)) {
