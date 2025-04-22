@@ -5,7 +5,7 @@
  * @param id the string id of the list we are looking for 
  * @param updateArray the array to have the lists objects pushed into
  */
-export default async function GetList (id : string, updateArray: any[]) {
+export default async function GetList (id : string) {
     console.log("running GetList");
     const url = `http://localhost:3000/api/lists/${id}`
     try {
@@ -17,6 +17,7 @@ export default async function GetList (id : string, updateArray: any[]) {
        const result = await response.json();
        //console.log(result);
        if (result.list) {
+        return result.list;
          updateArray.push(result.list);
         }
         console.log('Ending GetList');

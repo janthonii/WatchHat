@@ -1,5 +1,4 @@
-import RemoveListUser from "./RemoveListUser";
-
+import RefetchList from "./RefetchList";
 /**
  * This function will delete a specific list.
  * 
