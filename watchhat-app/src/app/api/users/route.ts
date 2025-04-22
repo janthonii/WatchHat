@@ -1,3 +1,5 @@
+// Handles new user registration
+// Returns a list of all users
 import connectMongoDB from "../../../../config/mongodb";
 import User from "@/models/usersSchema";
 import { NextResponse } from "next/server";
