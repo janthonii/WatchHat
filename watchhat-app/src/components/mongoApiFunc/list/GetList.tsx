@@ -18,7 +18,6 @@ export default async function GetList (id : string) {
        //console.log(result);
        if (result.list) {
         return result.list;
-         updateArray.push(result.list);
         }
         console.log('Ending GetList');
     } catch (error) {
