@@ -7,7 +7,7 @@ import GetList from "./GetList";
  * @param movie the movie id to look for
  * @returns true if a movieId is found in the participants
  */
-export default async function CheckMovies (movies: string[], movie: string) {
+export default async function CheckMovies (movies: number[], movie: number) {
     console.log("running CheckMovies");
     try {
       //get response to api url
