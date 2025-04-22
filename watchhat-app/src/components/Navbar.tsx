@@ -32,7 +32,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="">
+    <nav className="relative z-50">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-20 items-center justify-between">
           {/* Mobile menu button */}
@@ -77,7 +77,13 @@ const Navbar = () => {
           <div className="hidden md:block md:ml-6">
             <div className="flex items-center font-bold">
               {!session?.user ? (
-                <div>
+                <div className="flex items-center">
+                  <Link
+                    href="/about-us"
+                    className="text-[#FBE9D0] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
+                  >
+                    ABOUT US
+                  </Link>
                   <button 
                     onClick={() => router.push('/signup')}
                     className="flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2 ml-4"
@@ -108,7 +114,7 @@ const Navbar = () => {
                   </button>
                   
                   {dropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#E64833] ring-1 ring-black ring-opacity-5">
+                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-[#E64833] ring-1 ring-black ring-opacity-5 z-50">
                       <div className="py-1">
                         <Link
                           href="/profile"
