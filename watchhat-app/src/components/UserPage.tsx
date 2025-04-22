@@ -26,19 +26,19 @@ const userPage = () => {
                     </div>
                     </div>
                 </div>
-                <div className="p-4 rounded-xl bg-warm-gray text-[20px] font-bold content-center">
+                <div className="p-4 rounded-xl bg-warm-gray text-[25px] font-bold content-center">
                     Add Friend
-                    <form onSubmit={handleSubmit} className="relative w-full max-w-xl min-w-[200px]">
+                    <form onSubmit={handleSubmit} className="relative w-full max-w-xl min-w-[200px] text-[20px] items-center">
                         <input className="w-full bg-[#FFF8EE] text-md text-[#244855] font-bold border rounded-md pl-3 pr-28 py-2 focus:outline-[#E64833] hover:border-slate-300 shadow-sm focus:shadow" placeholder="Search for Users"></input>
                         <button className="absolute top-1 right-1 flex items-center rounded bg-custom-orange py-1 px-2.5 border border-transparent text-center text-md font-bold text-creamy-white shadow-sm hover:shadow hover:bg-[90AEAD] active:scale-90" type="submit">Add Friend</button>
                     </form>
                 </div>
             </div>
-            <div className="p-4 rounded-xl bg-warm-gray text-[20px] font-bold">
+            <div className="p-4 rounded-xl bg-warm-gray text-[25px] font-bold">
             Friends
             </div>
         </div>
-    )
+    );
 }
 
 export default userPage;
