@@ -1,4 +1,5 @@
 import FindListUser from "./FindListUser";
+import RefetchList from "./RefetchList";
 
 /**
  * This function will add a list to the mongodb based on the username and the list name.
@@ -18,13 +19,13 @@ export default async function AddList (name: string, user: string, shared: boole
       const participants : String[] = [];
       const existing = [];
       await FindListUser(user, existing);
-      /*for (var i = 0; i < existing.length; i++) {
+      for (var i = 0; i < existing.length; i++) {
         if (!existing[i].shared && !shared) {
             if (name === existing[i].name) {
                 throw new Error("Another list has this name already");
             }
         }
-      }*/
+      }
       participants.push(user);  
       const list = { name, participants, shared};
       const response = await fetch(url, { method: 'POST', body: JSON.stringify(list) });
@@ -32,7 +33,9 @@ export default async function AddList (name: string, user: string, shared: boole
         throw new Error('Network response for add list was not ok');
       }
       const result = await response.json();
-      console.log(result);
+      let temp = [];
+      await RefetchList(temp);
+      //console.log(result);
       console.log('Ending AddList');
     } catch (error) {
       console.error('Error in AddList!', error);

@@ -1,4 +1,6 @@
 import GetList from "./GetList";
+import FindListUser from "./FindListUser";
+import RefetchList from "./RefetchList";
 
 /**
  * This function will update the list name inside a list object. 
@@ -11,19 +13,26 @@ export default async function UpdateListName (id: string, name: string) {
     const url = `http://localhost:3000/api/lists/${id}`
     try {
       //get response to api url
-      const temp = [];
-      await GetList(id, temp);
-      if (temp.length > 0) {
-        /*if (name === temp[0].name) {
-            throw new Error("Another list has this name already");
-        }*/
-        let movies = temp[0].movies;
-        let participants = temp[0].participants;
+      const list = await GetList(id);
+      if (list) {
+        const existing = [];
+        await FindListUser(user, existing);
+        for (var i = 0; i < existing.length; i++) {
+          if (!existing[i].shared && !shared) {
+              if (name === existing[i].name) {
+                  throw new Error("Another list has this name already");
+              }
+          }
+        }
+        let movies = list.movies;
+        let participants = list.participants;
         const response = await fetch(url, { method: 'PUT', body: JSON.stringify({name, participants, movies}) });
         if (!response.ok) {
             throw new Error('Network response was not ok');
           }
       }
+      let news = [];
+      await RefetchList(news);
       console.log('Ending UpdateListMovie');
     } catch (error) {
       console.error('Error in UpdateListMovie!', error);

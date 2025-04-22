@@ -1,4 +1,4 @@
-
+import RefetchList from "./RefetchList";
 /**
  * This function will delete a specific list.
  * 
@@ -14,7 +14,9 @@ export default async function DeleteList (id : string) {
          throw new Error('Network response was not ok');
        }
        const result = await response.json();
-       console.log(result);
+       let temp = [];
+       await RefetchList(temp);
+       //console.log(result);
        console.log('Ending DeleteList');
     } catch (error) {
       console.error('Error in DeleteList!', error);

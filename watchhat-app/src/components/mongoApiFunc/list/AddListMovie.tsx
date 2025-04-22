@@ -1,5 +1,6 @@
-import FindListUser from "./FindListUser";
+import CheckMovies from "./CheckMovies";
 import GetList from "./GetList";
+import RefetchList from "./RefetchList";
 
 /**
  * This function will add a movieId to the movies inside a list object. 
@@ -12,19 +13,24 @@ export default async function AddListMovie (id: string, movieId: number) {
     const url = `http://localhost:3000/api/lists/${id}`
     try {
       //get response to api url
-      const temp = [];
-      await GetList(id, temp);
-      if (temp.length > 0) {
-        let movies = [...temp[0].movies, movieId];
-        let participants = temp[0].participants;
-        let name = temp[0].name;
+      const list = await GetList(id);
+      if (list) {
+        const adder = await CheckMovies(list.movies, movieId);
+        if (adder) {
+            throw new Error(`movie with ${movieId} as id is already a part of this list`);
+        }
+        let movies = [...list.movies, movieId];
+        let participants = list.participants;
+        let name = list.name;
         const response = await fetch(url, { method: 'PUT', body: JSON.stringify({name, participants, movies}) });
         if (!response.ok) {
             throw new Error('Network response was not ok');
           }
       }
-      console.log('Ending UpdateListMovie');
+      let news = [];
+      await RefetchList(news);
+      console.log('Ending AddListMovie');
     } catch (error) {
-      console.error('Error in UpdateListMovie!', error);
+      console.error('Error in AddListMovie!', error);
     }
   };

@@ -5,6 +5,9 @@ interface UUser extends Document {
     username: string;
     password: string;
     friends: mongoose.Types.ObjectId[]; // Reference to other Users - a string array of the friend's ids
+    recommended?: string;
+    rated?: string;
+    compatibility?: string;
 }
 
 const userSchema = new Schema<UUser>({
@@ -23,7 +26,19 @@ const userSchema = new Schema<UUser>({
     friends: [{
         type: Schema.Types.ObjectId,  // an array of friend's user ids
         ref: "User"
-      }]
+      }],
+    recommended: {
+        type: String,
+        default: ""
+    },
+    rated: {
+        type: String,
+        default: ""
+    },
+    compatibility: {
+        type: String,
+        default: ""
+    }
 });
 
 const User: Model<UUser> = mongoose.models.User || mongoose.model<UUser>("User", userSchema);
