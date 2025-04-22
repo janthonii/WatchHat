@@ -6,13 +6,15 @@ interface FriendItemProps {
     friendItem: {
         id: number;
         username: string;
-    }
+    };
 }
 
 const FriendItem = ({ friendItem }: FriendItemProps) => {
     return (
         <FriendCard>
-            <div></div>
+            <div className="flex font-bold text-center">
+                
+            </div>
         </FriendCard>
     );
 }
