@@ -11,9 +11,9 @@ interface FriendItemProps {
 
 const FriendItem = ({ friendItem }: FriendItemProps) => {
     return (
-        <div>
-
-        </div>
+        <FriendCard>
+            <div></div>
+        </FriendCard>
     );
 }
 
