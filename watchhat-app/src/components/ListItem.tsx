@@ -4,19 +4,18 @@ import ListCard from "./ListCard";
 
 interface ListItemProps {
     listitem: {
-        id: number;
-        title: string;
-        participants: number[]; //Use user id's
+        name: string;
+        participants: string[]; //Use user id's
         movies: number[]; //Use movie id's
-        isShared: Boolean;
+        shared: Boolean;
     };
 }
 
 const ListItem = ({listitem}:ListItemProps) => {
     return (
         <ListCard>
-            <div className="flex items-center justify-center text-xl font-bold text-[#142024]">
-                <Link href={`/my-lists/list/${listitem.id}`}><h1>{listitem.title}</h1></Link>
+            <div className="flex items-center justify-center min-w-60 truncate text-xl font-bold text-[#142024]">
+                <Link href={`/my-lists/list/${listitem.name}`}><h1>{listitem.name}</h1></Link>
             </div>
         </ListCard>
     )

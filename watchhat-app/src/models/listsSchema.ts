@@ -25,5 +25,5 @@ const listSchema = new Schema<LList>({
     }
 });
 
-const List: Model<LList> = mongoose.models.List || mongoose.model<LList>("List", listSchema);
+const List: Model<LList> = mongoose.models?.List || mongoose.model("List", listSchema);
 export default List;
