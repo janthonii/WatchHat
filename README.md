@@ -13,7 +13,7 @@ A web application that provides personalized movie and TV show recommendations b
 - **Disliked** (0-2)  
 
 ✅ **Recommendation Engine** – Suggests similar content based on:  
-- Shared actors, genres, directors  
+- Shared actors, genres, and original language  
 - Ratings from the user’s **"Watched" list**  
 
 ✅ **Lists Management**  
