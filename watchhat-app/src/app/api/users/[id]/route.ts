@@ -14,9 +14,6 @@ interface UpdateData {
     username?: string;
     password?: string;
     friends?: Types.ObjectId[];
-    recommended?: string;
-    rated?: string;
-    compatibility?: string;
 }
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
@@ -39,11 +36,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const { id } = params;
     const { 
         username, 
-        password, 
-        friends, 
-        recommended, 
-        rated, 
-        compatibility 
+        password  
     } = await request.json();
     
     await connectMongoDB();
@@ -56,10 +49,6 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
         const updateData: UpdateData = {};
         
         if (username) updateData.username = username;
-        if (friends) updateData.friends = friends;
-        if (recommended !== undefined) updateData.recommended = recommended;
-        if (rated !== undefined) updateData.rated = rated;
-        if (compatibility !== undefined) updateData.compatibility = compatibility;
         
         // Only hash password if it's being updated
         if (password) {

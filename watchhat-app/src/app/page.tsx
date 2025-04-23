@@ -13,10 +13,9 @@ export default function Home() {
         </div>
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <ol className="text-center text-[20px] outline-3 outline-black bg-warm-gray p-10 rounded-xl font-bold text-base/12">
-            <li>Rank your movies!</li>
-            <li>Get your best fit movies based on your rankings!</li>
+            <li>Search your movies!</li>
             <li>Have personal lists of movies to watch!</li>
-            <li>Have shared lists of movies for you and your friends to watch!</li>
+            <li>Have lists of movies ready for you and your friends to watch!</li>
           </ol>
         </div>
       </main>

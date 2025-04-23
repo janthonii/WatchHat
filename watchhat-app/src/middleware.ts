@@ -22,9 +22,8 @@ const middleware = async (request: NextRequest) => {
 
     // Protected API routes
     const protectedApiRoutes = [
-        "/api/users/friends",
-        "/api/users/search",
         "/api/users/[id]",
+        "/api/users",
         "/api/lists/[id]",
         "/api/lists/",
         "/api/ratings/[id]",
@@ -45,7 +44,6 @@ const middleware = async (request: NextRequest) => {
         const isProtectedPage = [
             "/my-lists",
             "/profile",
-            "/recommended"
         ].some(path => pathname.startsWith(path));
 
         // Check if accessing protected API route
@@ -67,7 +65,6 @@ export const config = {
         "/home",
         "/my-lists",
         "/profile",
-        "/recommended",
         "/signup",
         "/login",
         

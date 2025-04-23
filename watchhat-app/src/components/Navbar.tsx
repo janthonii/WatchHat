@@ -131,13 +131,6 @@ const Navbar = () => {
                           Profile
                         </Link>
                         <Link
-                          href="/recommended"
-                          onClick={() => setDropdownOpen(false)}
-                          className="block px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
-                        >
-                          Recommended
-                        </Link>
-                        <Link
                           href="/my-lists"
                           onClick={() => setDropdownOpen(false)}
                           className="block px-4 py-2 text-sm text-[#FBE9D0] hover:bg-[#d93f2b] uppercase"
@@ -190,13 +183,6 @@ const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   SEARCH
-                </Link>
-                <Link
-                  href="/recommended"
-                  className="block rounded-md px-3 py-2 text-base font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  RECOMMENDED
                 </Link>
                 <Link
                   href="/my-lists"
