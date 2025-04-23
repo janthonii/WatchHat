@@ -17,7 +17,6 @@ const Navbar = () => {
     await signOut({ callbackUrl: '/' });
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -78,12 +77,20 @@ const Navbar = () => {
             <div className="flex items-center font-bold">
               {!session?.user ? (
                 <div className="flex items-center">
-                  <Link
-                    href="/about-us"
-                    className="text-[#FBE9D0] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
-                  >
-                    ABOUT US
-                  </Link>
+                  <>
+                    <Link
+                      href="/about-us"
+                      className="text-[#FBE9D0] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
+                    >
+                      ABOUT US
+                    </Link>
+                    <Link
+                      href="/home"
+                      className="text-[#FBE9D0] hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase"
+                    >
+                      SEARCH
+                    </Link>
+                  </>
                   <button 
                     onClick={() => router.push('/signup')}
                     className="flex items-center bg-custom-orange hover:bg-dark-orange hover:text-white rounded-sm px-4 py-2 ml-4"
@@ -97,7 +104,7 @@ const Navbar = () => {
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     className="flex items-center bg-[#E64833] hover:bg-dark-orange text-[#FBE9D0] rounded-sm px-4 py-2 uppercase"
                   >
-                    <span>WELCOME, {session.user.name?.toUpperCase() || session.user.email?.split('@')[0].toUpperCase()}</span>
+                    <span>WELCOME, {session.user.name?.toUpperCase()}</span>
                     <svg
                       className={`ml-2 h-4 w-4 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`}
                       fill="none"
@@ -214,6 +221,15 @@ const Navbar = () => {
             >
               ABOUT US
             </Link>
+            {!session?.user && (
+              <Link
+                href="/home"
+                className="block rounded-md px-3 py-2 text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                SEARCH
+              </Link>
+            )}
             {!session?.user ? (
               <button 
                 onClick={() => {
