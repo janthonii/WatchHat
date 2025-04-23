@@ -5,7 +5,9 @@
 A web application that provides a way for users to record movie and TV show recommendations.
 
 ✅ **Lists Management**  
-- **Watchlist** – Plan-to-watch items (individual & group)
+- **Watchlist** – Plan-to-watch items
+- **Watchedlist** – Already watched items
+
 
 ✅ **API Used**  
 [TMDb API]: (https://developer.themoviedb.org/reference/discover-movie) 
