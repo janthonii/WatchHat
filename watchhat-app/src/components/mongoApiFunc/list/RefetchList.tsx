@@ -14,11 +14,12 @@ export default async function RefetchList (updateArray: any[]) {
          throw new Error('Network response was not ok');
        }
        const result = await response.json();
-       for (var i = 0; i < result.length; i++) {
+      /*  for (var i = 0; i < result.length; i++) {
         updateArray.push(result[i]);
-       }
+       } */
        //console.log(result);
         console.log('Ending RefetchList');
+        return result
     } catch (error) {
       console.error('Error in RefetchList!', error);
     }

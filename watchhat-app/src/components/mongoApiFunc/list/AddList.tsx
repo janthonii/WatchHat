@@ -8,7 +8,7 @@ import RefetchList from "./RefetchList";
  * @param name the name for this list name
  * @param shared the status if the list is to be shared or not
  */
-export default async function AddList (name: string, user: string, shared: boolean) {
+export default async function AddList (name: string, user: string[], shared: boolean) {
     console.log("running AddList");
     const url = `http://localhost:3000/api/lists`
     try {
@@ -18,15 +18,26 @@ export default async function AddList (name: string, user: string, shared: boole
       }
       const participants : String[] = [];
       const existing = [];
-      await FindListUser(user, existing);
+      for (var i = 0; i < user.length; i++) {
+        await FindListUser(user[i], existing);
+        for (var k = 0; k < existing.length; k++) {
+          if (!existing[k].shared && !shared) {
+              if (name === existing[k].name) {
+                  throw new Error("Another list has this name already");
+              }
+          }
+        }
+        participants.push(user[i]);
+      }
+      /* await FindListUser(user, existing);
       for (var i = 0; i < existing.length; i++) {
         if (!existing[i].shared && !shared) {
             if (name === existing[i].name) {
                 throw new Error("Another list has this name already");
             }
         }
-      }
-      participants.push(user);  
+      } */
+      //participants.push(user);  
       const list = { name, participants, shared};
       const response = await fetch(url, { method: 'POST', body: JSON.stringify(list) });
       if (!response.ok) {
