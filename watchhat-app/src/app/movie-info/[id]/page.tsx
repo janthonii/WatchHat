@@ -18,7 +18,13 @@ interface MovieDetails {
     cast?: number[];
 }
 
+// Add generateStaticParams for dynamic routes
+export async function generateStaticParams() {
+    return []; // Return empty array for on-demand generation
+}
+
 export default async function MovieInfo({ params }: { params: { id: string } }) {
+    // Access params directly - no await needed since params is always available
     const movieId = parseInt(params.id);
     const movieData: MovieDetails[] = [];
     const genreNames: string[] = [];

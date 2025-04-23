@@ -37,6 +37,10 @@ export default function MovieActions({ movieId, initialLists }: Props) {
         router.push(`/my-lists/list/${listId}`);
     };
 
+    if (!session) {
+        return null; // Don't render anything if not logged in
+    }
+
     return (
         <div className="relative inline-block text-left mb-4 group">
             <button

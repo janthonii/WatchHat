@@ -3,7 +3,7 @@ import NextAuth, { type NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/usersSchema";
-import connectMongoDB from "./config/mongodb";
+import connectMongoDB from "../config/mongodb";
 import { Types } from "mongoose";
 
 export const authOptions: NextAuthConfig = {
