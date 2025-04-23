@@ -4,10 +4,8 @@ import {useState, useEffect} from 'react';
 import AddList from "./mongoApiFunc/list/AddList";
 import RefetchList from "./mongoApiFunc/list/RefetchList";
 import { useSession } from "next-auth/react";
-import DeleteList from "./mongoApiFunc/list/DeleteList";
 import RemoveListUser from "./mongoApiFunc/list/RemoveListUser";
-import CheckParticipants from "./mongoApiFunc/list/CheckParticipants";
-import e from "cors";
+
 
 async function filterLists({initialLists, username, userLists}) {
     for (let i = 0; i < initialLists.length; i++) {

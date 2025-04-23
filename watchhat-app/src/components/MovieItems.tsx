@@ -3,6 +3,7 @@ import Link from "next/link";
 import {useState, useEffect} from 'react';
 import MovieItem from "./MovieItem";
 import MoviesHorizontalScroll from "./MoviesHorizontalScroll";
+import RemoveListMovie from "./mongoApiFunc/list/RemoveListMovie";
 
 interface Movie {
     id: number;
@@ -18,9 +19,10 @@ interface Movie {
 
 interface MovieItemsProps {
     initialMovies?: Movie[];
+    listId?: string;
 }
 
-export default function MovieItems({ initialMovies = [] }: MovieItemsProps) {
+export default function MovieItems({ initialMovies = [], listId}: MovieItemsProps) {
     const [movies, setMovies] = useState<Movie[]>(initialMovies);
 
     useEffect(() => {
@@ -40,6 +42,17 @@ export default function MovieItems({ initialMovies = [] }: MovieItemsProps) {
         }
     }, [initialMovies]);
 
+    const handleDeleteMovie = async (movieId: number) => {
+        if (!listId) return;
+
+        try {
+            await RemoveListMovie(listId, movieId); // 🔁 Your API call to delete movie from list
+            setMovies(prev => prev.filter(m => m.id !== movieId));
+        } catch (err) {
+            console.error("Error deleting movie:", err);
+        }
+    };
+
     return (
         <div className="">
             <div className="container-xl m-auto px-4 py-6">
@@ -58,4 +71,8 @@ export default function MovieItems({ initialMovies = [] }: MovieItemsProps) {
             </div>
         </div>
     )
+}
+
+function DeleteListMovie(listId: any, movieId: number) {
+    throw new Error("Function not implemented.");
 }

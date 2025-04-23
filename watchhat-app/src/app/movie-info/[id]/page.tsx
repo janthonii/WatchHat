@@ -3,6 +3,8 @@ import GetGenreNameMovie from "@/components/mongoApiFunc/genre/GetGenreNameMovie
 import Image from "next/image";
 import MovieInfoCards from "@/components/MovieInfoCard";
 import MovieActions from "@/components/MovieActions";
+import connectMongoDB from "../../../../config/mongodb";
+import List from "@/models/listsSchema";
 
 interface MovieDetails {
     id: number;
@@ -20,6 +22,10 @@ export default async function MovieInfo({ params }: { params: { id: string } }) 
     const movieId = parseInt(params.id);
     const movieData: MovieDetails[] = [];
     const genreNames: string[] = [];
+
+    await connectMongoDB();
+
+    const lists: any[] = await List.find({}).lean();
 
 
     await RetrieveMovie(Number(movieId), movieData);
@@ -42,7 +48,7 @@ export default async function MovieInfo({ params }: { params: { id: string } }) 
         <div className="min-h-100 p-8">
             <MovieInfoCards movie={movieData[0]} genres={genreNames}>
 
-            <MovieActions movieId={Number(movieId)} />
+            <MovieActions movieId={Number(movieId)} initialLists={JSON.parse(JSON.stringify(lists))} />
             </MovieInfoCards>
         </div>
     );
