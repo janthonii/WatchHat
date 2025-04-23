@@ -5,6 +5,7 @@ import AddList from "./mongoApiFunc/list/AddList";
 import RefetchList from "./mongoApiFunc/list/RefetchList";
 import { useSession } from "next-auth/react";
 import RemoveListUser from "./mongoApiFunc/list/RemoveListUser";
+import { useRouter } from 'next/navigation';
 
 
 async function filterLists({initialLists, username, userLists}) {
@@ -28,35 +29,38 @@ export default function ListItems({initialLists}) {
     const [newSharedList, setNewSharedList] = useState("");
     const [sharedWith, setSharedWith] = useState("");
 
+    const router = useRouter();
 
     const handlePrivateSubmit = async () => {
         let part = [username];
-        await AddList(newPrivateList, part, false);
+        const newList = await AddList(newPrivateList, part, false);
         setNewPrivateList("");
-        let temp: any[] = [];
-        let updated = await RefetchList(temp);
-        setLists(updated);
-        window.location.reload();
+        router.push(`/`)
+        setTimeout(() => {
+            router.push(`/my-lists`);
+        }, 800);
     };
 
     const handleSharedSubmit = async () => {
         let part = [username, sharedWith];
-        
-        await AddList(newSharedList, part, true);
+        const newList = await AddList(newSharedList, part, true);
         setNewSharedList("");
         setSharedWith("");
-        let temp: any[] = [];
-        let updated = await RefetchList(temp);
-        setLists(updated);
-        window.location.reload();
+        router.push(`/`)
+        setTimeout(() => {
+            router.push(`/my-lists`);
+        }, 800);
     };
 
     const handleDeleteList = async (id: string) => {
-        await RemoveListUser(id, username); // Call DeleteList function with the list ID
+        await RemoveListUser(id, username);
         let temp: any[] = [];
-        let updated = await RefetchList(temp);
-        setLists(updated);
-        window.location.reload();
+        await RefetchList(temp);
+        setLists(temp);
+        router.push(`/`)
+        setTimeout(() => {
+            router.push(`/my-lists`);
+        }, 800);
     };
 
     const privateLists = lists.filter(list => !list.shared);
