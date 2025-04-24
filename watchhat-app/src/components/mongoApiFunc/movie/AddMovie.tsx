@@ -6,7 +6,7 @@ import connectMongoDB from "../../../../config/mongodb";
  * 
  * @param movie the movie object to be added to the database
  */
-export default async function AddMovie (movie) {
+export default async function AddMovie (movie:any) {
     console.log("running addMovie");
     const url = `http://localhost:3000/api/movies`
     try {
