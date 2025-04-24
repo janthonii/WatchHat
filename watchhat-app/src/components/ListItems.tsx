@@ -36,7 +36,7 @@ export default function ListItems({initialLists}) {
         setNewPrivateList("");
         if (newList !== null) {
             router.push(`/`);
-            setTimeout(() => {router.push(`/my-lists`);}, 100);
+            setTimeout(() => {router.push(`/my-lists`);}, 200);
         }
     };
 
@@ -47,7 +47,7 @@ export default function ListItems({initialLists}) {
         setSharedWith("");
         if (newList !== null) {
             router.push(`/`);
-            setTimeout(() => {router.push(`/my-lists`);}, 100);
+            setTimeout(() => {router.push(`/my-lists`);}, 200);
         }
     };
 
@@ -57,7 +57,7 @@ export default function ListItems({initialLists}) {
         const newList = part;
         if (newList !== null) {
             router.push(`/`);
-            setTimeout(() => {router.push(`/my-lists`);}, 100);
+            setTimeout(() => {router.push(`/my-lists`);}, 200);
         }
     };
 

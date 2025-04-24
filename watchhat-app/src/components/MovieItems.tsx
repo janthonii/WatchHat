@@ -46,7 +46,7 @@ export default function MovieItems({ initialMovies = [], listId}: MovieItemsProp
         if (!listId) return;
 
         try {
-            await RemoveListMovie(listId, movieId); // 🔁 Your API call to delete movie from list
+            await RemoveListMovie(listId, movieId); // API call to delete movie from list
             setMovies(prev => prev.filter(m => m.id !== movieId));
         } catch (err) {
             console.error("Error deleting movie:", err);
@@ -71,8 +71,4 @@ export default function MovieItems({ initialMovies = [], listId}: MovieItemsProp
             </div>
         </div>
     )
-}
-
-function DeleteListMovie(listId: any, movieId: number) {
-    throw new Error("Function not implemented.");
 }

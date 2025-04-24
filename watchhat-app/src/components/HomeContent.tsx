@@ -6,6 +6,7 @@ import MovieItems from "@/components/MovieItems";
 import GetMovieSearch from '@/components/movieApiFunc/movie/GetMovieSearch';
 import MatchSearchResult from '@/components/mongoApiFunc/movie/MatchSearchResult';
 import { useRouter } from 'next/navigation';
+import MoviesHorizontalScroll from "./MoviesHorizontalScroll";
 
 interface HomeContentProps {
     staffMovies?: any[];
@@ -95,12 +96,12 @@ const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => 
                 />
             </div>
             
-            <h3 className="text-center font-bold mt-2 line-clamp-2 min-h-[44px] flex items-center justify-center">
+            <h3 className="text-center font-bold line-clamp-2 min-h-[44px] flex items-center justify-center">
                 {movie.title}
             </h3>
             
             {movie.showtimes?.length > 0 && (
-                <div className="mt-1 text-xs">
+                <div className="text-xs">
                     <div className="font-bold mb-1">Showtimes:</div>
                     {movie.showtimes.map((show: any, index: number) => (
                         <div key={`${movie.id}-showtime-${index}`} className="mb-1 last:mb-0">
@@ -110,7 +111,7 @@ const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => 
                                     day: 'numeric' 
                                 })} at {show.time}
                             </div>
-                            <div className="text-[#E64833] font-medium">{show.location}</div>
+                            <div className="text-[#90AEAD] font-medium translate-x-2">@ {show.location}</div>
                         </div>
                     ))}
                 </div>
@@ -150,7 +151,9 @@ const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => 
                     <div className="w-full">
                         <h2 className="text-xl mt-8">Showing in April @ UGA</h2>
                         <div className="m-3 p-4 flex flex-wrap gap-7 py-4">
-                            {ugaMoviesWithShowtimes.map(movie => renderUgaMovie(movie))}
+                            <MoviesHorizontalScroll className="translate-x-1">
+                                {...ugaMoviesWithShowtimes.map(movie => <div className="px-2">{renderUgaMovie(movie)}</div>)}
+                            </MoviesHorizontalScroll>
                         </div>
                     </div>
                     <div className="w-full mt-8">
