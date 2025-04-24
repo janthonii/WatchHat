@@ -1,16 +1,11 @@
 import { authConfig } from "./auth.config";
-import NextAuth from "next-auth";
+import NextAuth, { type NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/usersSchema";
 import connectMongoDB from "../config/mongodb";
 
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut,
-} = NextAuth({
+export const authOptions: NextAuthConfig = {
   ...authConfig,
   providers: [
     CredentialsProvider({
@@ -27,7 +22,6 @@ export const {
             return null;
           }
 
-          // Explicitly type the credentials
           const username = credentials.username as string;
           const password = credentials.password as string;
 
@@ -70,11 +64,18 @@ export const {
     }
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as const, 
   },
   pages: {
     signIn: "/login",
-  },
-  secret: process.env.AUTH_SECRET,
-  trustHost: true,
-});
+  }
+};
+
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth(authOptions);
+
+export default NextAuth(authOptions);
