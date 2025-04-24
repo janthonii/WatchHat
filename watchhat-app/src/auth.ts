@@ -1,17 +1,12 @@
 import { authConfig } from "./auth.config";
-import NextAuth from "next-auth";
+import NextAuth, { type NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/usersSchema";
-import connectMongoDB from "../config/mongodb";
+import connectMongoDB from "./config/mongodb";
 import { Types } from "mongoose";
 
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut,
-} = NextAuth({
+export const authOptions: NextAuthConfig = {
   ...authConfig,
   providers: [
     CredentialsProvider({
@@ -28,22 +23,24 @@ export const {
             return null;
           }
 
-          const user = await User.findOne({ username: credentials.username });
+          const username = credentials.username as string;
+          const password = credentials.password as string;
+
+          const user = await User.findOne({ username });
           if (!user) {
             console.log("User not found");
             return null;
           }
 
-          const isValid = await bcrypt.compare(credentials.password, user.password);
+          const isValid = await bcrypt.compare(password, user.password);
           if (!isValid) {
             console.log("Invalid password");
             return null;
           }
 
           return {
-            id: user._id.toString(),
-            name: user.username,
-            email: user.email || null,
+            id: (user._id as Types.ObjectId).toString(),
+            name: user.username
           };
         } catch (error) {
           console.error("Authentication error:", error);
@@ -67,11 +64,18 @@ export const {
     }
   },
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as const, 
   },
   pages: {
     signIn: "/login",
-  },
-  secret: process.env.AUTH_SECRET,
-  trustHost: true, 
-});
+  }
+};
+
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth(authOptions);
+
+export default NextAuth(authOptions);
