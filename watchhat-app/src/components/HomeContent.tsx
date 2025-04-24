@@ -148,8 +148,8 @@ const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => 
             {!activeSearch && (
                 <>
                     <div className="w-full">
-                        <h2 className="text-xl">Showing in April @ UGA</h2>
-                        <div className="flex flex-wrap gap-4 py-4">
+                        <h2 className="text-xl mt-8">Showing in April @ UGA</h2>
+                        <div className="m-3 p-4 flex flex-wrap gap-7 py-4">
                             {ugaMoviesWithShowtimes.map(movie => renderUgaMovie(movie))}
                         </div>
                     </div>
