@@ -22,13 +22,6 @@ const userPage = () => {
                     </div>
                 </div>
             </div>
-            
-            <div className="p-4 rounded-xl bg-warm-gray text-[25px] font-bold">
-            Friends
-            <div className="flex flex-row outline-3 outline-black bg-[#C2AD96] rounded-xl w-[400px] h-[100px] items-center content-center text-center text-black justify-center">
-                Your Mom
-            </div>
-            </div>
         </div>
     );
 }
