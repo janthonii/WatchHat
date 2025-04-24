@@ -1,12 +1,17 @@
 import { authConfig } from "./auth.config";
-import NextAuth, { type NextAuthConfig } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/usersSchema";
 import connectMongoDB from "../config/mongodb";
 import { Types } from "mongoose";
 
-export const authOptions: NextAuthConfig = {
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
   ...authConfig,
   providers: [
     CredentialsProvider({
@@ -23,25 +28,22 @@ export const authOptions: NextAuthConfig = {
             return null;
           }
 
-          const username = credentials.username as string;
-          const password = credentials.password as string;
-
-          const user = await User.findOne({ username });
+          const user = await User.findOne({ username: credentials.username });
           if (!user) {
             console.log("User not found");
             return null;
           }
 
-          const isValid = await bcrypt.compare(password, user.password);
+          const isValid = await bcrypt.compare(credentials.password, user.password);
           if (!isValid) {
             console.log("Invalid password");
             return null;
           }
 
           return {
-            id: (user._id as Types.ObjectId).toString(),
+            id: user._id.toString(),
             name: user.username,
-            email: null,
+            email: user.email || null,
           };
         } catch (error) {
           console.error("Authentication error:", error);
@@ -65,18 +67,11 @@ export const authOptions: NextAuthConfig = {
     }
   },
   session: {
-    strategy: "jwt" as const, // Explicitly typed as "jwt"
+    strategy: "jwt",
   },
   pages: {
     signIn: "/login",
-  }
-};
-
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut,
-} = NextAuth(authOptions);
-
-export default NextAuth(authOptions);
+  },
+  secret: process.env.AUTH_SECRET,
+  trustHost: true, 
+});
