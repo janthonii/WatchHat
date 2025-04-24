@@ -5,6 +5,7 @@ import logo from '@/assets/A-HAT_Logo_Big.svg';
 import MovieItems from "@/components/MovieItems";
 import GetMovieSearch from '@/components/movieApiFunc/movie/GetMovieSearch';
 import MatchSearchResult from '@/components/mongoApiFunc/movie/MatchSearchResult';
+import { useRouter } from 'next/navigation';
 
 interface HomeContentProps {
     staffMovies?: any[];
@@ -33,6 +34,7 @@ const UGA_SHOWTIMES: Record<number, Array<{ date: string; time: string; location
 };
 
 const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => {
+    const router = useRouter();
     const [searchQuery, setSearchQuery] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -72,11 +74,16 @@ const HomeContent = ({ staffMovies = [], ugaMovies = [] }: HomeContentProps) => 
         setSearchResults([]);
     };
 
+    const handleMovieClick = (movieId: number) => {
+        router.push(`/movie-info/${movieId}`);
+    };
+
     // Optimized UGA movie card renderer
     const renderUgaMovie = (movie: any) => (
         <div 
             key={movie.id}
-            className="shadow-md hover:shadow-[#E64833] rounded-lg p-3 bg-[#874F41] flex flex-col w-[200px] h-[390px]"
+            className="shadow-md hover:shadow-[#E64833] rounded-lg p-3 bg-[#874F41] flex flex-col w-[200px] h-[390px] cursor-pointer"
+            onClick={() => handleMovieClick(movie.id)}
         >
             <div className="h-[225px] flex items-center justify-center">
                 <Image 
