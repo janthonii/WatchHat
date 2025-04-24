@@ -5,6 +5,7 @@ import MovieInfoCards from "@/components/MovieInfoCard";
 import MovieActions from "@/components/MovieActions";
 import connectMongoDB from "../../../../config/mongodb";
 import List from "@/models/listsSchema";
+import RetrieveActor from "@/components/mongoApiFunc/actor/RetrieveActor";
 
 interface MovieDetails {
     id: number;
@@ -28,6 +29,8 @@ export default async function MovieInfo({ params }: { params: { id: string } }) 
     const movieId = parseInt(params.id);
     const movieData: MovieDetails[] = [];
     const genreNames: string[] = [];
+    const castObjects: any[] = [];
+    const castNames: string[] = [];
 
     await connectMongoDB();
 
@@ -37,6 +40,16 @@ export default async function MovieInfo({ params }: { params: { id: string } }) 
     await RetrieveMovie(Number(movieId), movieData);
     if (movieData[0]?.genre_ids?.length) {
         await GetGenreNameMovie(movieId.toString(), genreNames);
+
+    }
+
+    if (movieData[0]?.cast?.length) {
+        for (const actorId of movieData[0].cast) {
+            await RetrieveActor(actorId, castObjects);
+        }
+        for(const actor of castObjects) {
+            castNames.push(actor.name);
+        }
     }
 
     if (movieData.length === 0 || !movieData[0]) {
@@ -52,7 +65,7 @@ export default async function MovieInfo({ params }: { params: { id: string } }) 
 
     return (
         <div className="min-h-100 p-8">
-            <MovieInfoCards movie={movieData[0]} genres={genreNames}>
+            <MovieInfoCards movie={movieData[0]} genres={genreNames} cast={castNames}>
 
             <MovieActions movieId={Number(movieId)} initialLists={JSON.parse(JSON.stringify(lists))} />
             </MovieInfoCards>

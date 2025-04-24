@@ -21,6 +21,7 @@ async function filterLists({initialLists, username, userLists}) {
 
 export default function ListItems({initialLists}) {
     const { data: session } = useSession();
+    const router = useRouter();
     const username = session?.user?.name;
     let userLists = [];
     filterLists({initialLists, username, userLists});
@@ -29,16 +30,14 @@ export default function ListItems({initialLists}) {
     const [newSharedList, setNewSharedList] = useState("");
     const [sharedWith, setSharedWith] = useState("");
 
-    const router = useRouter();
-
     const handlePrivateSubmit = async () => {
         let part = [username];
         const newList = await AddList(newPrivateList, part, false);
         setNewPrivateList("");
-        router.push(`/`)
-        setTimeout(() => {
-            router.push(`/my-lists`);
-        }, 800);
+        if (newList !== null) {
+            router.push(`/`);
+            setTimeout(() => {router.push(`/my-lists`);}, 100);
+        }
     };
 
     const handleSharedSubmit = async () => {
@@ -46,21 +45,20 @@ export default function ListItems({initialLists}) {
         const newList = await AddList(newSharedList, part, true);
         setNewSharedList("");
         setSharedWith("");
-        router.push(`/`)
-        setTimeout(() => {
-            router.push(`/my-lists`);
-        }, 800);
+        if (newList !== null) {
+            router.push(`/`);
+            setTimeout(() => {router.push(`/my-lists`);}, 100);
+        }
     };
 
     const handleDeleteList = async (id: string) => {
         await RemoveListUser(id, username);
-        let temp: any[] = [];
-        await RefetchList(temp);
-        setLists(temp);
-        router.push(`/`)
-        setTimeout(() => {
-            router.push(`/my-lists`);
-        }, 800);
+        let part = username;
+        const newList = part;
+        if (newList !== null) {
+            router.push(`/`);
+            setTimeout(() => {router.push(`/my-lists`);}, 100);
+        }
     };
 
     const privateLists = lists.filter(list => !list.shared);

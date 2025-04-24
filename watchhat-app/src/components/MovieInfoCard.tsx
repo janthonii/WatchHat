@@ -10,10 +10,11 @@ interface MovieInfoCardsProps {
         poster_path?: string;
     };
     genres: string[];
+    cast: string[];
     children?: React.ReactNode;
     }
 
-    export default function MovieInfoCards({ movie, genres, children }: MovieInfoCardsProps) {
+    export default function MovieInfoCards({ movie, genres, cast, children }: MovieInfoCardsProps) {
     const posterUrl = movie.poster_path
         ? movie.poster_path.startsWith('http')
         ? movie.poster_path
@@ -37,10 +38,17 @@ interface MovieInfoCardsProps {
                             <p className="italic mb-4">Original Title: {movie.original_title}</p>
                         )}
 
-                        {children && <div className="mb-4">{children}</div>}
-
                         {movie.release_date && (
                             <p className="mb-4">Release Date: {new Date(movie.release_date).toLocaleDateString()}</p>
+                        )}
+
+                        {children && <div className="mb-2">{children}</div>}
+
+                        {movie.overview && (
+                            <div className="mb-4">
+                                <h2 className="text-xl font-semibold mb-2">Overview</h2>
+                                <p className="ml-2">{movie.overview}</p>
+                            </div>
                         )}
 
                         {/* Display Genres */}
@@ -55,10 +63,15 @@ interface MovieInfoCardsProps {
                             </div>
                         )}
 
-                        {movie.overview && (
+                        {/* Display Actors */}
+                        {cast.length > 0 && (
                             <div className="mb-4">
-                                <h2 className="text-xl font-semibold mb-2">Overview</h2>
-                                <p className="ml-2">{movie.overview}</p>
+                                <h2 className="text-xl font-semibold mb-2">Cast</h2>
+                                <div className="flex flex-wrap gap-2">
+                                    {cast.map((member, index) => (
+                                        <span key={index} className="bg-[#7A6E6E] hover:scale-[1.05] hover:rotate-[-5deg] transition duration-200 px-3 py-1 rounded-full text-sm">{member}</span>
+                                    ))}
+                                </div>
                             </div>
                         )}
                     </div>
