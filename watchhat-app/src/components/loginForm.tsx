@@ -27,7 +27,7 @@ const LoginForm = () => {
       if (result?.error) {
         setError("Invalid credentials");
       } else {
-        router.push("/");
+        router.push("/home");
       }
     } catch (error) {
       setError("Login failed. Please try again.");

@@ -4,7 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/usersSchema";
 import connectMongoDB from "../config/mongodb";
-import { Types } from "mongoose";
 
 export const authOptions: NextAuthConfig = {
   ...authConfig,
@@ -38,11 +37,11 @@ export const authOptions: NextAuthConfig = {
             return null;
           }
 
+          // Return user object without email if not needed
           return {
-            id: (user._id as Types.ObjectId).toString(),
-            name: user.username,
-            email: null,
-          };
+            id: user._id.toString(),
+            name: user.username
+          } as any; // Temporary workaround for type mismatch
         } catch (error) {
           console.error("Authentication error:", error);
           return null;
@@ -65,7 +64,7 @@ export const authOptions: NextAuthConfig = {
     }
   },
   session: {
-    strategy: "jwt" as const, // Explicitly typed as "jwt"
+    strategy: "jwt" as const, 
   },
   pages: {
     signIn: "/login",
