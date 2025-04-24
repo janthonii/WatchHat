@@ -4,7 +4,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/usersSchema";
 import connectMongoDB from "../config/mongodb";
-import { Types } from "mongoose";
 
 export const {
   handlers: { GET, POST },
@@ -28,23 +27,27 @@ export const {
             return null;
           }
 
-          const user = await User.findOne({ username: credentials.username });
+          // Explicitly type the credentials
+          const username = credentials.username as string;
+          const password = credentials.password as string;
+
+          const user = await User.findOne({ username });
           if (!user) {
             console.log("User not found");
             return null;
           }
 
-          const isValid = await bcrypt.compare(credentials.password, user.password);
+          const isValid = await bcrypt.compare(password, user.password);
           if (!isValid) {
             console.log("Invalid password");
             return null;
           }
 
+          // Return user object without email if not needed
           return {
             id: user._id.toString(),
-            name: user.username,
-            email: user.email || null,
-          };
+            name: user.username
+          } as any; // Temporary workaround for type mismatch
         } catch (error) {
           console.error("Authentication error:", error);
           return null;
@@ -73,5 +76,5 @@ export const {
     signIn: "/login",
   },
   secret: process.env.AUTH_SECRET,
-  trustHost: true, 
+  trustHost: true,
 });
